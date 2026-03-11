@@ -1,0 +1,21 @@
+{
+    "session_id": "SESSION-1772967072",
+    "version": "2.0-NEURAL",
+    "entries": [
+        {
+            "timestamp": 1772967111.3654559,
+            "task_ref": "D5F91EE9",
+            "asset_id": "DA-5CDB0A27",
+            "handshake": {
+                "step_id": "fe795554",
+                "source_model": "grok",
+                "asset_id": "DA-5CDB0A27",
+                "thought": "Neural Asset Sealed & Archived. Settlement: 23.9535",
+                "action": "complete",
+                "price": 23.953511962692918,
+                "data": "[Search Results]\nRequest for Proposal (RFP): Definition, Requirements, and Examples ...\n www.goveagle.com/blog/request-for-proposal-rfp-definition-requirements-examples\nLearn what an RFP is, key requirements, and examples. Get expert guidance on Request for Proposal responses and compliance for February 2026.\nLearn what an RFP is, key requirements, and examples. Get expert guidance on Request for Proposal responses and compliance for February 2026.\nThe RFP process: A step-by-step guide - Responsive\n www.responsive.io/blog/rfp-process-guide \u00a0 \u00a0 2025-02-03T00:00:00.0000000\nEvaluation The last step of the RFP process is to review the vendor proposals, compare them and select a winner. It's crucial to engage stakeholders in this process to provide their perspective and expertise. Review responses Before you begin scoring, gather your vendor proposals to review them for compliance to the submission and minimum ..."
+            },
+            "seal": "e072a16a4c3202fa3e99dd6b9a2d2991ba3bdd977538f18a9f62e15293b1eb7f"
+        }
+    ]
+}

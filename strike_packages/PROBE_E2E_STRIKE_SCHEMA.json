@@ -1,0 +1,102 @@
+{
+  "canvas": {
+    "id": "prebid_gov_biz_canvas",
+    "name": "PREBID MASTER Probe E2E Test",
+    "ratio": "9:16",
+    "theme": "Gov-Official",
+    "background": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
+  },
+  "components": [
+    {
+      "type": "StatusHeader",
+      "props": {
+        "title": "Probe E2E Test",
+        "subtitle": "Industry: Security & IT",
+        "budget": "N/A"
+      }
+    },
+    {
+      "type": "LiveFaceScanner",
+      "props": {
+        "resolution": "1080p",
+        "fps": 30,
+        "detection_mode": "multi-target"
+      },
+      "bid_ref": "FACE-CAPTURE-CORE"
+    },
+    {
+      "type": "DynamicScoreColumn",
+      "props": {
+        "label": "Compliance Confidence",
+        "value": "97.8",
+        "color": "#003366"
+      },
+      "bid_ref": "COMPLIANCE-SCORE"
+    },
+    {
+      "type": "MetricList",
+      "props": {
+        "items": [
+          {
+            "label": "Video Surveillance System",
+            "value": "Tech.Spec.1",
+            "status": "COMPLIANT"
+          },
+          {
+            "label": "Access Control Integration",
+            "value": "Tech.Spec.2",
+            "status": "COMPLIANT"
+          }
+        ]
+      }
+    },
+    {
+      "type": "StarClausePanel",
+      "props": {
+        "clauses": [
+          {
+            "text": "*7Z-V7NGB E:",
+            "mandatory": true
+          },
+          {
+            "text": "Ki*#F<dGZ\\",
+            "mandatory": true
+          },
+          {
+            "text": "P%*[]r",
+            "mandatory": true
+          },
+          {
+            "text": "7<y*;'k",
+            "mandatory": true
+          },
+          {
+            "text": "q'M*/+E",
+            "mandatory": true
+          },
+          {
+            "text": "*Y7oQ3",
+            "mandatory": true
+          },
+          {
+            "text": "*SqauNf",
+            "mandatory": true
+          },
+          {
+            "text": "Qy*>29z",
+            "mandatory": true
+          }
+        ]
+      },
+      "bid_ref": "MANDATORY-CLAUSES"
+    },
+    {
+      "type": "NetworkTopology",
+      "props": {
+        "nodes": 2,
+        "connections": 4,
+        "throughput": "3200 req/s"
+      }
+    }
+  ]
+}

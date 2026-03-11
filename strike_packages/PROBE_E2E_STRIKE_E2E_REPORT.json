@@ -1,0 +1,24 @@
+{
+  "phase1": {
+    "status": "PASS",
+    "features": 2,
+    "stars": 80
+  },
+  "phase2": {
+    "status": "PASS",
+    "components": 6
+  },
+  "phase3": {
+    "status": "PASS",
+    "draft_path": "strike_packages\\PROBE_E2E_STRIKE_BID_DRAFT.md",
+    "risk_count": 80
+  },
+  "phase4": {
+    "status": "PASS",
+    "html_path": "strike_packages\\PROBE_E2E_STRIKE_OFFLINE.html",
+    "html_sha256": "917dc5c6825e96a4c060396005b795a43198a9227151d23febd9a95d927d3c82",
+    "schema_sha256": "77a1c3c4278185d5ce83627d61e64282c5d4dbe33c8ab76c0f027031ab50d590",
+    "integrity_html": "VERIFIED",
+    "integrity_schema": "VERIFIED"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "DAILM - Distributed AI Labor Market",
+  "description": "A distributed AI orchestration system that leverages web-based AI models as compute nodes using Playwright automation.",
+  "requestFramePermissions": []
+}

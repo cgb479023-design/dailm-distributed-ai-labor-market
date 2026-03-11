@@ -1,0 +1,89 @@
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.claude/
+	.cursorrules
+	.env.example
+	.gitignore
+	AGENTS.md
+	BID_DRAFT_HAINAN_TEST.md
+	CLAUDE.md
+	"DAILM (Distributed AI Labor Market) \347\263\273\347\273\237\347\232\204\345\256\214\346\225\264\346\240\270\345\277\203\346\236\266\346\236\204\344\273\243\347\240\201.txt"
+	EXPANSION_RESULT.txt
+	Final_Evolution_Strike.py
+	Final_Strike_Test.py
+	Final_Strike_Test_v2.py
+	Master_Deploy.bat
+	README.md
+	RFP_EXTRACTION_FINAL.txt
+	agents/
+	archives/
+	arena_available_models.json
+	arena_selectors.json
+	audit_rfp_deep.py
+	channels/
+	check_api.py
+	core/
+	dailm_e2e_probe.py
+	dailm_standalone_probe.py
+	demo_pulse_output.txt
+	demo_synth_pulse.py
+	diagnose_selectors.py
+	diagnose_selectors_v2.py
+	docs/
+	index.html
+	list_arena_models.py
+	main.py
+	metadata.json
+	mission_logs/
+	package-lock.json
+	package.json
+	pdf_full_content.txt
+	pdf_full_text.txt
+	pdf_text_sample.txt
+	prebid_assets/
+	prebid_master_flow.py
+	prebid_output.txt
+	prebid_output_utf8.txt
+	prebid_workbench.html
+	probe_output.txt
+	public/
+	purge_api.py
+	requirements.txt
+	research_arena_models.py
+	run_prebid_audit.py
+	scout_friendli.py
+	scripts/
+	src/
+	status.txt
+	status_py.txt
+	strike_log.txt
+	strike_packages/
+	tasks/
+	test_file_write.py
+	test_full_strike.py
+	test_labor_expansion.py
+	test_minimal.py
+	test_out.txt
+	test_output.txt
+	test_pdf_extraction.py
+	test_pdf_parse.py
+	test_style_gallery.py
+	tests/
+	tools/
+	tsconfig.json
+	utils/
+	validation_report.md
+	vault/
+	verify_all.py
+	verify_api.py
+	verify_friendli_manual.py
+	verify_system.py
+	verify_v2_logic.py
+	vite.config.ts
+	workbench/
+
+nothing added to commit but untracked files present (use "git add" to track)

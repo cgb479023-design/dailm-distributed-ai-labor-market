@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreBid Master AI | Workbench 9:16</title>
+    <style>
+        :root {
+            --accent: #00d4ff;
+            --bg: #0a1020;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, #122347 0%, #05070f 100%);
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #e7f6ff;
+        }
+        .phone {
+            width: 360px;
+            height: 640px;
+            border: 8px solid #2a2f3f;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--bg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .canvas {
+            height: 100%;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .header {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .title { font-size: 13px; font-weight: 700; color: var(--accent); }
+        .sub { font-size: 11px; opacity: 0.85; margin-top: 4px; }
+        .scanner {
+            height: 180px;
+            border-radius: 12px;
+            background: #020409;
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            animation: scan 2.5s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: calc(100% - 2px); }
+            100% { top: 0; }
+        }
+        .score {
+            border-radius: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent);
+        }
+        .score-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; }
+        .score-value { font-size: 32px; font-weight: 700; margin-top: 2px; letter-spacing: 1px; }
+        .metrics {
+            margin-top: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .metric {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .metric:last-child { border-bottom: none; }
+        .ok { color: #5de0a6; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <div class="canvas" id="app"></div>
+    </div>
+    <script>
+        const SCHEMA_KEY = "prebid_workbench_schema_v1";
+        const SCORE_KEY = "prebid_workbench_live_score_v1";
+
+        const defaultSchema = {
+            canvas: { ratio: "9:16", theme: "Gov-Biz Vertical Demo" },
+            components: [
+                {
+                    type: "StatusHeader",
+                    props: {
+                        title: "PREBID MASTER : HAINAN UNIVERSITY",
+                        subtitle: "Safe Campus demo with scoring-point mapping"
+                    }
+                },
+                { type: "LiveFaceScanner", props: {} },
+                { type: "DynamicScoreColumn", props: { label: "Face Quality Index", value: 98.7 } },
+                {
+                    type: "MetricList",
+                    props: {
+                        items: [
+                            { label: "Mandatory Clause Coverage", value: "100%" },
+                            { label: "Face Filtering Latency", value: "< 50ms" },
+                            { label: "Recognition Precision", value: ">= 600 nodes" },
+                            { label: "Offline Mode", value: "Ready" }
+                        ]
+                    }
+                }
+            ]
+        };
+
+        function loadSchema() {
+            try {
+                const raw = localStorage.getItem(SCHEMA_KEY);
+                if (!raw) return defaultSchema;
+                return JSON.parse(raw);
+            } catch {
+                return defaultSchema;
+            }
+        }
+
+        function saveSchema(schema) {
+            localStorage.setItem(SCHEMA_KEY, JSON.stringify(schema));
+        }
+
+        function loadScore(fallback) {
+            const raw = localStorage.getItem(SCORE_KEY);
+            const num = Number(raw);
+            return Number.isFinite(num) ? num : fallback;
+        }
+
+        function saveScore(score) {
+            localStorage.setItem(SCORE_KEY, String(score));
+        }
+
+        function render(schema) {
+            const app = document.getElementById("app");
+            const header = schema.components.find(c => c.type === "StatusHeader");
+            const scoreComp = schema.components.find(c => c.type === "DynamicScoreColumn");
+            const metricComp = schema.components.find(c => c.type === "MetricList");
+
+            const scoreLabel = scoreComp?.props?.label || "Live Score";
+            const scoreValue = loadScore(scoreComp?.props?.value || 97.2).toFixed(2);
+            const items = metricComp?.props?.items || [];
+
+            app.innerHTML = `
+                <div class="header">
+                    <div class="title">${header?.props?.title || "PreBid Master"}</div>
+                    <div class="sub">${header?.props?.subtitle || ""}</div>
+                </div>
+                <div class="scanner"><div class="line"></div></div>
+                <div class="score">
+                    <div class="score-label">${scoreLabel}</div>
+                    <div class="score-value" id="live-score">${scoreValue}</div>
+                </div>
+                <div class="metrics">
+                    ${items.map(i => `<div class="metric"><span>${i.label}</span><span class="ok">${i.value}</span></div>`).join("")}
+                </div>
+            `;
+        }
+
+        function startPulse() {
+            setInterval(() => {
+                const scoreEl = document.getElementById("live-score");
+                if (!scoreEl) return;
+                const next = 95 + Math.random() * 4.5;
+                scoreEl.textContent = next.toFixed(2);
+                saveScore(next);
+            }, 1200);
+        }
+
+        const schema = loadSchema();
+        saveSchema(schema);
+        render(schema);
+        startPulse();
+    </script>
+</body>
+</html>

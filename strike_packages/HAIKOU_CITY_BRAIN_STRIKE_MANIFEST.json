@@ -1,0 +1,21 @@
+{
+  "package_name": "HAIKOU_CITY_BRAIN_STRIKE",
+  "generated_at": "2026-03-11T09:26:29",
+  "style": "GOV_BIZ",
+  "files": [
+    {
+      "path": "strike_packages\\HAIKOU_CITY_BRAIN_STRIKE_OFFLINE.html",
+      "sha256": "3603056ba4971e51a5d8b7d09b6fa80c802e3eff8a2484c0acf02a4e30732b6d",
+      "size": 4388
+    },
+    {
+      "path": "strike_packages\\HAIKOU_CITY_BRAIN_STRIKE_SCHEMA.json",
+      "sha256": "922f780c126f65654bb2745aa62827a86290b1891e2c732361d49a9320664d7c",
+      "size": 2299
+    }
+  ],
+  "integrity": {
+    "html_sha256": "3603056ba4971e51a5d8b7d09b6fa80c802e3eff8a2484c0acf02a4e30732b6d",
+    "schema_sha256": "922f780c126f65654bb2745aa62827a86290b1891e2c732361d49a9320664d7c"
+  }
+}

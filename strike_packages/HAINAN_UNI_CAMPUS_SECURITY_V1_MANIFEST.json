@@ -1,0 +1,35 @@
+{
+  "package_name": "HAINAN_UNI_CAMPUS_SECURITY_V1",
+  "generated_at": "2026-03-11T12:38:27",
+  "style": "GOV_BIZ",
+  "files": [
+    {
+      "path": "strike_packages\\HAINAN_UNI_CAMPUS_SECURITY_V1_OFFLINE.html",
+      "sha256": "bb579707551149bdb5fef6a84de46b6b6fc4301d1b046d42e71e447c3b13df95",
+      "size": 3721
+    },
+    {
+      "path": "strike_packages\\HAINAN_UNI_CAMPUS_SECURITY_V1_SCHEMA.json",
+      "sha256": "692f7794b4db46479016e2609920c73bb533f04b2663be748902204fe8960de6",
+      "size": 1034
+    }
+  ],
+  "integrity": {
+    "html_sha256": "bb579707551149bdb5fef6a84de46b6b6fc4301d1b046d42e71e447c3b13df95",
+    "schema_sha256": "692f7794b4db46479016e2609920c73bb533f04b2663be748902204fe8960de6"
+  },
+  "extra": {
+    "score_mapping": [
+      {
+        "feature_id": 1,
+        "feature_name": "Video Surveillance System",
+        "score_ref": "Tech.Spec.1"
+      },
+      {
+        "feature_id": 2,
+        "feature_name": "Access Control Integration",
+        "score_ref": "Tech.Spec.2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+    "DA-8CE8DEC6": {
+        "asset_id": "DA-8CE8DEC6",
+        "hash": "70165e071058819692ba4b390813c397cc9d2397b589abb261ad8e53313773b3",
+        "type": "code",
+        "timestamp": 1772956062.0523906,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:claude",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-BA4FE9B6": {
+        "asset_id": "DA-BA4FE9B6",
+        "hash": "666c1da46cf936322cbcd927ca7a5589b1a3396843d27b1b6bb6cd77db269e2e",
+        "type": "analyze",
+        "timestamp": 1772965823.8993635,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-E933A8E2": {
+        "asset_id": "DA-E933A8E2",
+        "hash": "6a964b403bed1d0f79a5a5cff5768c30d4006f0970c1cdd20281d9da4892fd42",
+        "type": "analyze",
+        "timestamp": 1772965939.2228637,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-B9D804B7": {
+        "asset_id": "DA-B9D804B7",
+        "hash": "d10ae98790b8200fd2098ebf07e293ee8e035a38c2a2b40f14cabe2c63a2b2b1",
+        "type": "analyze",
+        "timestamp": 1772966191.9133263,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-65AA1818": {
+        "asset_id": "DA-65AA1818",
+        "hash": "eca337dc36d34aef445cb72dd463417c8a5580b919f1727087dab239227fd543",
+        "type": "analyze",
+        "timestamp": 1772966296.9254355,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-5247CB62": {
+        "asset_id": "DA-5247CB62",
+        "hash": "bfb0cf817bbdc075d0fa274e211c42242bfbe60407d7f778794f36b314d07af0",
+        "type": "analyze",
+        "timestamp": 1772966374.1408806,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-AE4E8CD8": {
+        "asset_id": "DA-AE4E8CD8",
+        "hash": "bfb0cf817bbdc075d0fa274e211c42242bfbe60407d7f778794f36b314d07af0",
+        "type": "analyze",
+        "timestamp": 1772966493.939504,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-7F2D8A66": {
+        "asset_id": "DA-7F2D8A66",
+        "hash": "eca337dc36d34aef445cb72dd463417c8a5580b919f1727087dab239227fd543",
+        "type": "analyze",
+        "timestamp": 1772966532.2525058,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-A86B4023": {
+        "asset_id": "DA-A86B4023",
+        "hash": "d6c893dbf0b1cff38b717fc14d26b5f3d0ea54b251d5fc236ea31ee0a1f5780e",
+        "type": "analyze",
+        "timestamp": 1772966660.2005858,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-3E22502B": {
+        "asset_id": "DA-3E22502B",
+        "hash": "e66c53eed800edbfa317b51b57502b2891bb9e9c0e1f1a79fdd718cccfa1e4d7",
+        "type": "analyze",
+        "timestamp": 1772966727.069978,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-CB7F4BAE": {
+        "asset_id": "DA-CB7F4BAE",
+        "hash": "e16499f519188c7b5d68954feeda5ca493cae45f6fdce4b5791eb217b97f0887",
+        "type": "analyze",
+        "timestamp": 1772966938.2477293,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    },
+    "DA-5CDB0A27": {
+        "asset_id": "DA-5CDB0A27",
+        "hash": "ee976d9731cbc618abbd7b03889ac4935981ca87fb2901f1ddd9b54580b816c5",
+        "type": "analyze",
+        "timestamp": 1772967111.3624585,
+        "metadata": {
+            "version": "2.0",
+            "provenance": "NeuralNode:grok",
+            "encryption": "AES-256-NODE-LINK"
+        }
+    }
+}

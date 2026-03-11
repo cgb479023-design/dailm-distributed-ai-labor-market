@@ -1,0 +1,37 @@
+{
+    "products": [
+        {
+            "id": "AI_VISION_PRO",
+            "name": "AI Vision Intel Pro v4.0",
+            "specs": {
+                "throughput": 4000,
+                "latency": "15ms",
+                "precison_nodes": 2048,
+                "features": [
+                    "Face Detection",
+                    "Real-time Scoring",
+                    "High-speed Snapshot"
+                ]
+            },
+            "compliance": {
+                "government_standard": "GB/T 28181",
+                "ip_security": "Dedicated Hardware Isolated"
+            }
+        },
+        {
+            "id": "SECURE_CAMPUS_OS",
+            "name": "Hekaton Secure Campus Management System",
+            "specs": {
+                "max_camera_nodes": 5000,
+                "audit_logs": "Persistent/Encrypted"
+            }
+        }
+    ],
+    "case_studies": [
+        {
+            "name": "Sun Yat-sen University Security Upgrade 2025",
+            "industry": "Education",
+            "scope": "Phase 1 Intelligent Reconstruction"
+        }
+    ]
+}

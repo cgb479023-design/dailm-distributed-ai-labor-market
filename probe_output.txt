@@ -1,0 +1,56 @@
+﻿.\venv\Scripts\python.exe : E:\dailm---distributed-ai-labor-market\dailm_standalone_probe.py:10: SyntaxWarning: invalid escape sequence '\S'
+所在位置 行:1 字符: 32
++ ... NG='utf-8'; .\venv\Scripts\python.exe dailm_standalone_probe.py 2>&1  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\dailm---dist...e sequence '\S':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  .\venv\Scripts\python.exe dailm_standalone_probe.py
+
+2026-03-11 13:56:48,492 | INFO    | ============================================================
+2026-03-11 13:56:48,493 | INFO    |   DAILM PREBID MASTER - STANDALONE E2E PROBE
+2026-03-11 13:56:48,493 | INFO    |   (No Server / No Browser / Pure Python)
+2026-03-11 13:56:48,493 | INFO    | ============================================================
+2026-03-11 13:56:48,493 | INFO    | 
+2026-03-11 13:56:48,494 | INFO    | --- PHASE 1: NEURAL RECON (Parse RFP) ---
+2026-03-11 13:56:49.770 | INFO     | core.sandbox:__init__:18 - [SANDBOX]: Neural Containment Field established at C:\Users\cgb2026\AppData\Local\T
+emp\dailm_sandbox_d59c2066
+
+2026-03-11 13:56:49,771 | INFO    | [PREBID]: Analyzing legacy .doc: 129娴峰彛甯傚煄甯傚ぇ鑴戜簩鏈熼」鐩嫑鏍囨枃浠?doc
+2026-03-11 13:56:49,774 | WARNING | win32com failed: No module named 'win32com', trying python-docx fallback...
+2026-03-11 13:56:49,775 | WARNING | python-docx on .doc failed: Package not found at '129娴峰彛甯傚煄甯傚ぇ鑴戜簩鏈熼」鐩嫑鏍囨枃浠?doc', trying raw read...
+2026-03-11 13:56:50,739 | INFO    |   Extracted text length: 176012 chars
+2026-03-11 13:56:50,753 | INFO    |   [PASS] Blueprint extracted!
+2026-03-11 13:56:50,753 | INFO    |     Project : Probe E2E Test
+2026-03-11 13:56:50,753 | INFO    |     Industry: Security & IT
+2026-03-11 13:56:50,753 | INFO    |     Features: 2
+2026-03-11 13:56:50,754 | INFO    |     Star (*) clauses: 80
+2026-03-11 13:56:50,754 | INFO    | 
+2026-03-11 13:56:50,754 | INFO    | --- PHASE 2: VISUAL SYNTH (9:16 UI Schema) ---
+2026-03-11 13:56:50,871 | INFO    |   [PASS] UI Schema generated!
+2026-03-11 13:56:50,872 | INFO    |     Theme      : Gov-Official
+2026-03-11 13:56:50,872 | INFO    |     Ratio      : 9:16
+2026-03-11 13:56:50,872 | INFO    |     Components : 6
+2026-03-11 13:56:50,872 | INFO    | 
+2026-03-11 13:56:50,872 | INFO    | --- PHASE 3: COMPLIANCE HUB (Bid Draft + Risk) ---
+2026-03-11 13:56:50,881 | INFO    |   [PASS] Bid Draft generated!
+2026-03-11 13:56:50,883 | INFO    |     Draft path : strike_packages\PROBE_E2E_STRIKE_BID_DRAFT.md
+2026-03-11 13:56:50,883 | INFO    |     Risks found: 80
+2026-03-11 13:56:50,883 | INFO    |       >> CRITICAL: no matching capability for mandatory clause: *7Z-V...
+2026-03-11 13:56:50,883 | INFO    |       >> CRITICAL: no matching capability for mandatory clause: Ki*#F...
+2026-03-11 13:56:50,883 | INFO    |       >> CRITICAL: no matching capability for mandatory clause: P%*[]...
+2026-03-11 13:56:50,884 | INFO    | 
+2026-03-11 13:56:50,884 | INFO    | --- PHASE 4: STRIKE EXPORT + ASSET AUDIT ---
+2026-03-11 13:56:50,893 | INFO    |   [PASS] Strike Package exported!
+2026-03-11 13:56:50,893 | INFO    |     HTML      : strike_packages\PROBE_E2E_STRIKE_OFFLINE.html
+2026-03-11 13:56:50,893 | INFO    |     Schema    : strike_packages\PROBE_E2E_STRIKE_SCHEMA.json
+2026-03-11 13:56:50,893 | INFO    |     Manifest  : strike_packages\PROBE_E2E_STRIKE_MANIFEST.json
+2026-03-11 13:56:50,893 | INFO    |     HTML SHA  : 917dc5c6825e96a4c060396005b795a43198a9227151d23febd9a95d927d3c82
+2026-03-11 13:56:50,893 | INFO    |     Schema SHA: 77a1c3c4278185d5ce83627d61e64282c5d4dbe33c8ab76c0f027031ab50d590
+2026-03-11 13:56:50,894 | INFO    |     HTML Integrity   : VERIFIED
+2026-03-11 13:56:50,895 | INFO    |     Schema Integrity : VERIFIED
+2026-03-11 13:56:50,895 | INFO    | 
+2026-03-11 13:56:50,895 | INFO    | ============================================================
+2026-03-11 13:56:50,895 | INFO    |   FINAL VERDICT:  ALL PHASES PASSED
+2026-03-11 13:56:50,895 | INFO    | ============================================================
+2026-03-11 13:56:50,897 | INFO    |   Report saved -> strike_packages\PROBE_E2E_STRIKE_E2E_REPORT.json

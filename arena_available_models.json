@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Battle Mode\n\nBattle 2 anonymous models",
+    "visible": true
+  },
+  {
+    "text": "Side by Side\n\nCompare 2 models of your choice",
+    "visible": true
+  },
+  {
+    "text": "Direct\n\nChat with 1 model at a time",
+    "visible": true
+  }
+]

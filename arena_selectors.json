@@ -1,0 +1,254 @@
+[
+  {
+    "tag": "BUTTON",
+    "classes": "hover:after:bg-sidebar-border absolute inset-y-0 z-50 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex [[data-side=left]_&]:cursor-w-resize [[data-side=right]_&]:cursor-e-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize group-data-[collapsible=offcanvas]:hover:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full [[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "peer/menu-button flex items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>span]:group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:transition-none data-[active=true]:font-normal data-[state=open]:bg-sidebar data-[state=open]:text-sidebar-accent-foreground h-auto w-fit justify-start",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "hover:bg-surface-tertiary flex-shrink-0 rounded-md p-1.5 transition-colors",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-none focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 after:md:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0 transition-opacity opacity-0 group-hover/session:opacity-100",
+    "placeholder": "",
+    "text": "More"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 px-4 py-2 text-interactive-active border border-border-faint bg-transparent hover:text-interactive-normal hover:bg-surface-secondary active:text-text-tertiary rounded-[4px] font-normal w-full gap-1 text-xs",
+    "placeholder": "",
+    "text": "Hide this"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-text-tertiary hover:text-text-secondary whitespace-nowrap text-left",
+    "placeholder": "",
+    "text": "Cookies"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-text-secondary hover:text-text-primary shrink-0",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 py-2 text-sm text-interactive-active hover:text-interactive-normal active:text-text-tertiary rounded-[4px] font-normal touch-hitbox px-2",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "border-border text-header-secondary hover:text-header-primary data-[state=open]:text-text-tertiary ring-offset-background placeholder:text-muted-foreground focus:ring-ring group flex items-center justify-between whitespace-nowrap rounded-md border px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:block [&>span]:truncate h-[29px] w-[280px] max-w-max border-none",
+    "placeholder": "",
+    "text": "Direct"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 py-1 text-xs border bg-transparent font-normal text-interactive-active hover:bg-surface-tertiary hover:text-interactive-active active:text-interactive-active flex h-[29px] max-w-[180px] items-center justify-between gap-1 rounded-[4px] border-transparent px-2",
+    "placeholder": "",
+    "text": "Max"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "border-border text-header-secondary hover:text-header-primary data-[state=open]:text-text-tertiary ring-offset-background placeholder:text-muted-foreground focus:ring-ring group flex items-center justify-between whitespace-nowrap rounded-md border px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:block [&>span]:truncate h-[29px] w-[280px] max-w-max border-none",
+    "placeholder": "",
+    "text": "Direct"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 py-1 text-xs border bg-transparent font-normal text-interactive-active hover:bg-surface-tertiary hover:text-interactive-active active:text-interactive-active flex h-[29px] max-w-[180px] items-center justify-between gap-1 rounded-[4px] border-transparent px-2",
+    "placeholder": "",
+    "text": "Max"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 px-4 py-2 text-sm text-text-interactive-inverted bg-header-primary hover:bg-header-primary/90 rounded-[4px] font-normal",
+    "placeholder": "",
+    "text": "Login"
+  },
+  {
+    "tag": "TEXTAREA",
+    "classes": "box-border w-full flex-none resize-none focus:outline-none active:outline-none placeholder:text-text-placeholder bg-surface-secondary max-h-[40vh] p-1 md:p-3",
+    "placeholder": "Ask anything\u2026",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-interactive-active border border-border-faint bg-transparent active:text-text-tertiary font-normal touch-hitbox group/modality-button hover:text-interactive-active relative h-8 w-8 rounded-md p-0 transition-colors duration-150 ease-out active:transition-transform active:duration-75 hover:bg-interactive-normal/10 hover:border-interactive-normal/10",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-interactive-active border border-border-faint bg-transparent active:text-text-tertiary font-normal touch-hitbox group/modality-button hover:text-interactive-active relative h-8 w-8 rounded-md p-0 transition-colors duration-150 ease-out active:transition-transform active:duration-75 hover:bg-interactive-normal/10 hover:border-interactive-normal/10",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-interactive-active border border-border-faint bg-transparent active:text-text-tertiary font-normal touch-hitbox group/modality-button hover:text-interactive-active relative h-8 w-8 rounded-md p-0 transition-colors duration-150 ease-out active:transition-transform active:duration-75 hover:bg-interactive-normal/10 hover:border-interactive-normal/10",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "text-interactive-normal hover:text-interactive-active focus-visible:text-interactive-active flex cursor-pointer select-none items-center justify-center transition-colors duration-200 rounded-md p-2",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 h-8 w-8 active:bg-interactive-cta-active opacity-50 pointer-events-none rounded-[4px] font-normal touch-hitbox border-border-medium text-interactive-active hover:bg-surface-raised border bg-transparent",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "TEXTAREA",
+    "classes": "",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "TEXTAREA",
+    "classes": "g-recaptcha-response",
+    "placeholder": "",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ring-offset-2 focus-visible:ring-offset-surface-primary disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 px-4 py-2 text-sm text-interactive-on-cta bg-interactive-cta hover:bg-interactive-cta-hover active:bg-interactive-cta-active rounded-[4px] font-normal w-full sm:w-auto",
+    "placeholder": "",
+    "text": "Agree"
+  },
+  {
+    "tag": "BUTTON",
+    "classes": "ring-offset-surface-primary focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none",
+    "placeholder": "",
+    "text": "Close"
+  }
+]

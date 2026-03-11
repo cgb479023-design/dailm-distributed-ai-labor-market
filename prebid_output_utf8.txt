@@ -1,0 +1,79 @@
+﻿.\venv\Scripts\python.exe : 2026-03-11 09:24:20.910 | INFO     | __main__:run_prebid_master_flow:101 - --- \U0001f6e1\ufe0f PREBID 
+MASTER MISSION START: 129海口市城市大脑二期项目招标文件.doc ---
+所在位置 行:1 字符: 1
++ .\venv\Scripts\python.exe prebid_master_flow.py --rfp 129海口市城市大脑二期项目招 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-03-11 09:2...期项目招标文件.doc ---:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-03-11 09:24:20.948 | INFO     | core.sandbox:__init__:18 - [SANDBOX]: Neural Containment Field established at C:\Users\cgb2026
+\AppData\Local\Temp\dailm_sandbox_04324a39
+
+2026-03-11 09:24:20.949 | INFO     | __main__:run_prebid_master_flow:112 - ═══════════════════════════════════════════
+
+2026-03-11 09:24:20.949 | INFO     | __main__:run_prebid_master_flow:113 -   PHASE 1: Extracting Blueprint & ★ Clauses
+
+2026-03-11 09:24:20.949 | INFO     | __main__:run_prebid_master_flow:114 - ═══════════════════════════════════════════
+
+win32com failed: No module named 'win32com', trying python-docx fallback...
+
+python-docx on .doc failed: Package not found at '129海口市城市大脑二期项目招标文件.doc', trying raw read...
+
+[PREBID]: AI parsing failed ('PreBidAgent' object has no attribute 'matrix'). Using deterministic fallback.
+
+2026-03-11 09:24:22.277 | SUCCESS  | __main__:run_prebid_master_flow:120 - Blueprint extracted: 2 features, 80 ★ clauses
+
+2026-03-11 09:24:22.277 | INFO     | __main__:run_prebid_master_flow:121 -   Project: Unknown
+
+2026-03-11 09:24:22.278 | INFO     | __main__:run_prebid_master_flow:122 -   Industry: Security & IT
+
+2026-03-11 09:24:22.280 | INFO     | __main__:run_prebid_master_flow:129 -   Blueprint saved -> prebid_assets\HAIKOU_CITY_BRAIN_BLU
+EPRINT.json
+
+2026-03-11 09:24:22.280 | INFO     | __main__:run_prebid_master_flow:132 - ═══════════════════════════════════════════
+
+2026-03-11 09:24:22.282 | INFO     | __main__:run_prebid_master_flow:133 -   PHASE 2: Synthesizing 9:16 Demo Schema (Style: Gov-Biz
+)
+
+2026-03-11 09:24:22.282 | INFO     | __main__:run_prebid_master_flow:134 - ═══════════════════════════════════════════
+
+2026-03-11 09:24:22.286 | SUCCESS  | __main__:run_prebid_master_flow:141 - 9:16 UI Schema generated -> prebid_assets\HAIKOU_CITY_BR
+AIN_UI.json
+
+2026-03-11 09:24:22.286 | INFO     | __main__:run_prebid_master_flow:142 -   Theme: Gov-Official
+
+2026-03-11 09:24:22.286 | INFO     | __main__:run_prebid_master_flow:143 -   Components: 6
+
+2026-03-11 09:24:22.286 | INFO     | __main__:run_prebid_master_flow:146 - ═══════════════════════════════════════════
+
+2026-03-11 09:24:22.286 | INFO     | __main__:run_prebid_master_flow:147 -   PHASE 3: Social Proxy Scouting & Compliance Hub
+
+2026-03-11 09:24:22.286 | INFO     | __main__:run_prebid_master_flow:148 - ═══════════════════════════════════════════
+
+Traceback (most recent call last):
+
+  File "E:\dailm---distributed-ai-labor-market\prebid_master_flow.py", line 210, in <module>
+
+    asyncio.run(run_prebid_master_flow(args.rfp, selected_style))
+
+  File "C:\Users\cgb2026\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+
+    return runner.run(main)
+
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\cgb2026\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cgb2026\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+
+           ^^^^^^^^^^^^^^^
+
+  File "E:\dailm---distributed-ai-labor-market\prebid_master_flow.py", line 152, in run_prebid_master_flow
+
+    matrix = ModelMatrix()
+
+             ^^^^^^^^^^^^^
+
+TypeError: ModelMatrix.__init__() missing 1 required positional argument: 'engine'
+

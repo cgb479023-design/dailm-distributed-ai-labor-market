@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+venv/
+*.egg-info/
+
+# Build outputs
+build/
+dist/
+coverage/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Keep .env.example
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Browser profiles
+.playwright_chrome_profile/
+
+# Large binary files
+get-pip.py
+*.doc
+*.pdf
+*.png
+*.jpg
+*.jpeg
+arena_diag.html
+ddg_diag.html
+
+# Temporary / scratch
+/tmp/
+*.tmp
+
+# Python
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt

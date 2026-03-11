@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREBID MASTER Probe E2E Test</title>
+    <style>
+        :root { --accent: #003366; --bg-canvas: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        body { margin: 0; background: #050505; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: Arial, sans-serif; color: #fff; }
+        .phone-frame { width: 360px; height: 640px; background: #000; border: 8px solid #333; border-radius: 32px; box-shadow: 0 0 50px rgba(0,0,0,0.5); overflow: hidden; }
+        .canvas { width: 100%; height: 100%; background: var(--bg-canvas); padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 15px; }
+        .header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .header h1 { font-size: 14px; color: var(--accent); margin: 0; }
+        .scanner { width: 100%; height: 180px; background: rgba(0,0,0,0.3); border: 1px solid var(--accent); border-radius: 12px; position: relative; overflow: hidden; }
+        .scan-line { position: absolute; width: 100%; height: 2px; background: var(--accent); top: 0; animation: scan 3s linear infinite; }
+        @keyframes scan { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+        .metric-card { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 16px; border-left: 4px solid var(--accent); }
+        .value { font-size: 28px; font-weight: 700; }
+        .label { font-size: 10px; opacity: 0.7; text-transform: uppercase; }
+        .footer-metrics { margin-top: auto; font-size: 11px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; }
+        .item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+    <div class="phone-frame"><div class="canvas" id="app"></div></div>
+    <script>
+        const schema = {"canvas": {"id": "prebid_gov_biz_canvas", "name": "PREBID MASTER Probe E2E Test", "ratio": "9:16", "theme": "Gov-Official", "background": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"}, "components": [{"type": "StatusHeader", "props": {"title": "Probe E2E Test", "subtitle": "Industry: Security & IT", "budget": "N/A"}}, {"type": "LiveFaceScanner", "props": {"resolution": "1080p", "fps": 30, "detection_mode": "multi-target"}, "bid_ref": "FACE-CAPTURE-CORE"}, {"type": "DynamicScoreColumn", "props": {"label": "Compliance Confidence", "value": "97.8", "color": "#003366"}, "bid_ref": "COMPLIANCE-SCORE"}, {"type": "MetricList", "props": {"items": [{"label": "Video Surveillance System", "value": "Tech.Spec.1", "status": "COMPLIANT"}, {"label": "Access Control Integration", "value": "Tech.Spec.2", "status": "COMPLIANT"}]}}, {"type": "StarClausePanel", "props": {"clauses": [{"text": "*7Z-V7NGB E:", "mandatory": true}, {"text": "Ki*#F<dGZ\\", "mandatory": true}, {"text": "P%*[]r", "mandatory": true}, {"text": "7<y*;'k", "mandatory": true}, {"text": "q'M*/+E", "mandatory": true}, {"text": "*Y7oQ3", "mandatory": true}, {"text": "*SqauNf", "mandatory": true}, {"text": "Qy*>29z", "mandatory": true}]}, "bid_ref": "MANDATORY-CLAUSES"}, {"type": "NetworkTopology", "props": {"nodes": 2, "connections": 4, "throughput": "3200 req/s"}}]};
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="header">
+                <h1>${schema.canvas.name}</h1>
+                <div style="font-size:9px;opacity:0.6;margin-top:5px;">${schema.canvas.theme} | Offline Package</div>
+            </div>
+            ${schema.components.map(c => {
+                if (c.type === 'LiveFaceScanner') return '<div class="scanner"><div class="scan-line"></div></div>';
+                if (c.type === 'DynamicScoreColumn') return `<div class="metric-card"><div class="label">${c.props.label}</div><div class="value">${c.props.value}</div></div>`;
+                if (c.type === 'MetricList') return `<div class="footer-metrics">${c.props.items.map(m => `<div class="item"><span>${m.label}</span><span style="color:var(--accent)">${m.value}</span></div>`).join('')}</div>`;
+                return '';
+            }).join('')}
+        `;
+    </script>
+</body>
+</html>

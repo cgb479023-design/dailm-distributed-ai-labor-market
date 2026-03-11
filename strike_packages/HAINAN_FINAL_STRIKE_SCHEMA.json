@@ -1,0 +1,46 @@
+{
+  "canvas": {
+    "id": "prebid_fallback_canvas",
+    "name": "PreBid Fallback Strike",
+    "ratio": "9:16",
+    "theme": "SaaS-Glass",
+    "background": "linear-gradient(45deg, #f3f4f6 0%, #ffffff 100%)"
+  },
+  "components": [
+    {
+      "type": "StatusHeader",
+      "props": {
+        "title": "PREBID MASTER OFFLINE STRIKE",
+        "subtitle": "Industry: Security & IT"
+      }
+    },
+    {
+      "type": "LiveFaceScanner",
+      "props": {},
+      "bid_ref": "FALLBACK-PARSE"
+    },
+    {
+      "type": "DynamicScoreColumn",
+      "props": {
+        "label": "Compliance Confidence",
+        "value": "96.5"
+      },
+      "bid_ref": "FALLBACK-SCORE"
+    },
+    {
+      "type": "MetricList",
+      "props": {
+        "items": [
+          {
+            "label": "Video Surveillance System",
+            "value": "Tech.Spec.1"
+          },
+          {
+            "label": "Access Control Integration",
+            "value": "Tech.Spec.2"
+          }
+        ]
+      }
+    }
+  ]
+}

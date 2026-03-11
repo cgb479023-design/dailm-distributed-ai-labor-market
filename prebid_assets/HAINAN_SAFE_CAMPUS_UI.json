@@ -1,0 +1,83 @@
+{
+    "canvas": {
+        "id": "hainan_safe_campus_demo",
+        "name": "Hainan University Safe Campus - Mobile Recon",
+        "ratio": "9:16",
+        "resolution": "1080x1920",
+        "theme": "Hyper-Tech Neon",
+        "background": "linear-gradient(135deg, #0a0b1e 0%, #1a1b3a 100%)"
+    },
+    "components": [
+        {
+            "id": "header_01",
+            "type": "StatusHeader",
+            "props": {
+                "title": "PREBID MASTER : HAINAN UNIVERSITY",
+                "subtitle": "Safe Campus Tech-Demo (Standard: 综合评分法)",
+                "icon": "🛡️",
+                "accent_color": "#bc13fe"
+            }
+        },
+        {
+            "id": "scanner_01",
+            "type": "LiveFaceScanner",
+            "props": {
+                "source": "AI_GENERATED_STREAM",
+                "overlay": {
+                    "tracking_boxes": "enabled",
+                    "score_display": "inline"
+                }
+            },
+            "constraints": {
+                "bid_ref": "RFP_PAGE_32_FACE_INTEL",
+                "requirement": "检测、跟踪、抓拍、评分、筛选最优人脸"
+            }
+        },
+        {
+            "id": "score_pillar_01",
+            "type": "DynamicScoreColumn",
+            "props": {
+                "label": "FACE_QUALITY_INDEX",
+                "value": "98.7",
+                "delta": "+2.3%",
+                "animation": "pulse"
+            }
+        },
+        {
+            "id": "compliance_deck_01",
+            "type": "MetricList",
+            "props": {
+                "items": [
+                    {
+                        "label": "Throughput Capacity",
+                        "value": "★ ≥3200",
+                        "status": "verified"
+                    },
+                    {
+                        "label": "Face Filtering Latency",
+                        "value": "★ < 50ms",
+                        "status": "verified"
+                    },
+                    {
+                        "label": "Recognition Precision",
+                        "value": "★ ≥1600 Nodes",
+                        "status": "verified"
+                    },
+                    {
+                        "label": "IP Security Protocol",
+                        "value": "Active (Unique Source)",
+                        "status": "verified"
+                    }
+                ]
+            },
+            "layout": {
+                "position": "bottom-docked"
+            }
+        }
+    ],
+    "meta": {
+        "generated_by": "Antigravity Alpha Awakened",
+        "security_hash": "SHA256-MISSION-HAINAN-0309",
+        "audit_status": "PHASE_2_CERTIFIED"
+    }
+}

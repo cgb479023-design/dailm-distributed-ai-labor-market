@@ -1,0 +1,35 @@
+{
+  "package_name": "HAINAN_FINAL_STRIKE",
+  "generated_at": "2026-03-11T12:57:12",
+  "style": "MODERN_SAAS",
+  "files": [
+    {
+      "path": "strike_packages\\HAINAN_FINAL_STRIKE_OFFLINE.html",
+      "sha256": "a3106aae94b74dd1645fabec57db4f0d3aa33ce73f03bd16f348b8e93a4bf482",
+      "size": 3717
+    },
+    {
+      "path": "strike_packages\\HAINAN_FINAL_STRIKE_SCHEMA.json",
+      "sha256": "4fbb80e14bfed2d1d0cea9933cc73574b6236d1212f39ae4e95b88caba127d83",
+      "size": 1031
+    }
+  ],
+  "integrity": {
+    "html_sha256": "a3106aae94b74dd1645fabec57db4f0d3aa33ce73f03bd16f348b8e93a4bf482",
+    "schema_sha256": "4fbb80e14bfed2d1d0cea9933cc73574b6236d1212f39ae4e95b88caba127d83"
+  },
+  "extra": {
+    "score_mapping": [
+      {
+        "feature_id": 1,
+        "feature_name": "Video Surveillance System",
+        "score_ref": "Tech.Spec.1"
+      },
+      {
+        "feature_id": 2,
+        "feature_name": "Access Control Integration",
+        "score_ref": "Tech.Spec.2"
+      }
+    ]
+  }
+}

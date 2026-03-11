@@ -1,0 +1,35 @@
+{
+  "package_name": "PROBE_E2E_STRIKE",
+  "generated_at": "2026-03-11T13:56:50",
+  "style": "GOV_BIZ",
+  "files": [
+    {
+      "path": "strike_packages\\PROBE_E2E_STRIKE_OFFLINE.html",
+      "sha256": "917dc5c6825e96a4c060396005b795a43198a9227151d23febd9a95d927d3c82",
+      "size": 4382
+    },
+    {
+      "path": "strike_packages\\PROBE_E2E_STRIKE_SCHEMA.json",
+      "sha256": "77a1c3c4278185d5ce83627d61e64282c5d4dbe33c8ab76c0f027031ab50d590",
+      "size": 2293
+    }
+  ],
+  "integrity": {
+    "html_sha256": "917dc5c6825e96a4c060396005b795a43198a9227151d23febd9a95d927d3c82",
+    "schema_sha256": "77a1c3c4278185d5ce83627d61e64282c5d4dbe33c8ab76c0f027031ab50d590"
+  },
+  "extra": {
+    "score_mapping": [
+      {
+        "feature_id": 1,
+        "feature_name": "Video Surveillance System",
+        "score_ref": "Tech.Spec.1"
+      },
+      {
+        "feature_id": 2,
+        "feature_name": "Access Control Integration",
+        "score_ref": "Tech.Spec.2"
+      }
+    ]
+  }
+}

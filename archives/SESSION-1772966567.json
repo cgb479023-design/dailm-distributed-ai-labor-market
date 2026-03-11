@@ -1,0 +1,21 @@
+{
+    "session_id": "SESSION-1772966567",
+    "version": "2.0-NEURAL",
+    "entries": [
+        {
+            "timestamp": 1772966660.2045817,
+            "task_ref": "D5F91EE9",
+            "asset_id": "DA-A86B4023",
+            "handshake": {
+                "step_id": "f76ed866",
+                "source_model": "grok",
+                "asset_id": "DA-A86B4023",
+                "thought": "Neural Asset Sealed & Archived. Settlement: 21.9023",
+                "action": "complete",
+                "price": 21.90227774636512,
+                "data": "[Search Results]\nShop for person tent - Amazon\u00ae Official Site AD\namazon.com\nBrowse & discover thousands of brands. Read customer reviews & find best sellers. Free shipping on qualified orders. Free, easy returns on millions of items.\nBrowse & discover thousands of brands. Read customer reviews & find best sellers. Free shipping on qualified orders. Free, easy returns on millions of items.\nHome - Prebid\n prebid.org\nSeveral Prebid.org members will configure and host your Prebid implementations, helping publishers install Prebid.js, Prebid Mobile, and/or Prebid Server."
+            },
+            "seal": "c89fa4ac08a7df3872b73422f17da602c13edd4eae5208250e0e1c576178531b"
+        }
+    ]
+}
