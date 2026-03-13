@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_RETAIL",
+    "ratio": "9:16",
+    "theme": "Retail-Vibe",
+    "background": "linear-gradient(to bottom, #fff5f5, #ffffff)"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#f97316"
+      }
+    }
+  ]
+}

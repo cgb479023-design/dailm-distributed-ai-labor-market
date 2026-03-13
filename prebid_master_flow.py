@@ -8,6 +8,8 @@ from agents.exporter import StrikeExporter
 from agents.prebid_agent import PreBidAgent
 from agents.social_agent import SocialListeningAgent
 from core.sandbox import NeuralSandbox
+from agents.context_manager import ContextWindow
+from utils.handshake import strict_json_handshake
 
 
 def _build_deterministic_ui_schema(blueprint: dict, style: IndustryStyle) -> dict:
@@ -189,13 +191,29 @@ async def run_prebid_master_flow(rfp_path: str, style: IndustryStyle):
         score_mapping=score_mapping
     )
     
+    # [Moat 4] True Offline Zip Package (100% Coverage Rule 2)
+    import zipfile
+    zip_path = "strike_packages/PreBid_Demo_HAIKOU_CITY_BRAIN.zip"
+    def generate_mock_data(schema):
+        return {"components_count": len(schema.get("components", [])), "live": True, "offline": True}
+        
+    with zipfile.ZipFile(zip_path, 'w') as z:
+        # Include the newly enhanced 9:16 workbench as the offline player
+        if os.path.exists("prebid_workbench.html"):
+            z.write("prebid_workbench.html", "index.html")
+        # Include AI-generated Schema
+        z.writestr("data/project_schema.json", ui_schema_json)
+        # Include Mock Data
+        z.writestr("data/mock_db.json", json.dumps(generate_mock_data(ui_schema), ensure_ascii=False))
+    
     logger.info("═══════════════════════════════════════════")
     logger.success("🎯 MISSION COMPLETE!")
     logger.info("═══════════════════════════════════════════")
     logger.info(f"  📋 Blueprint:  {bp_path}")
     logger.info(f"  🎨 UI Schema:  {ui_path}")
     logger.info(f"  📝 Bid Draft:  {bid_draft_path}")
-    logger.info(f"  📦 Offline:    {offline_path}")
+    logger.info(f"  📦 Offline HTML: {offline_path}")
+    logger.info(f"  🗜️ Offline ZIP:  {zip_path} (U盘即插即用)")
     logger.info("═══════════════════════════════════════════")
 
 if __name__ == "__main__":

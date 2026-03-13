@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreBid Master AI | Enterprise Workbench</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: 'var(--brand-bg)',
+                            primary: 'var(--brand-primary)',
+                            surface: 'var(--brand-surface)',
+                            text: 'var(--brand-text)',
+                            accent: 'var(--brand-accent)',
+                        },
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan': 'scan 2.5s linear infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%, 100%': { top: '0%' },
+                            '50%': { top: '100%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --brand-bg: #05070f;
+            --brand-primary: #3b82f6;
+            --brand-surface: rgba(255, 255, 255, 0.05);
+            --brand-text: #e2e8f0;
+            --brand-accent: #60a5fa;
+            --brand-radius: 12px;
+        }
+
+        .theme-gov {
+            --brand-bg: #450a0a;
+            --brand-primary: #ef4444;
+            --brand-surface: rgba(255, 255, 255, 0.1);
+            --brand-accent: #fcd34d;
+        }
+
+        .theme-sci-fi {
+            --brand-bg: #0f0720;
+            --brand-primary: #a855f7;
+            --brand-surface: rgba(168, 85, 247, 0.1);
+            --brand-accent: #22d3ee;
+        }
+
+        .theme-saas {
+            --brand-bg: #064e3b;
+            --brand-primary: #10b981;
+            --brand-surface: rgba(16, 185, 129, 0.1);
+            --brand-accent: #34d399;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-bg);
+            color: var(--brand-text);
+            transition: all 0.5s ease;
+        }
+
+        .glass {
+            background: var(--brand-surface);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .phone-shell {
+            width: 320px;
+            height: 600px;
+            border: 10px solid #1a1a1a;
+            border-radius: 36px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .scan-line {
+            height: 2px;
+            background: var(--brand-primary);
+            box-shadow: 0 0 15px var(--brand-primary);
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    </style>
+
+    <!-- PreBid Master AI: Offline Data Injection -->
+    <script>
+        (function() {
+            const OFFLINE_DATA = {
+                project: "HAINAN_UNIVERSITY_DEMO",
+                generatedAt: "2026-03-11 20:19:41",
+                ai_core: `INITIATED
+STRESS_SPIKED
+SUCCESS: FRIENDLI_SPAWNED
+FINISHED
+`
+            };
+            localStorage.setItem("prebid_offline_data_v1", JSON.stringify(OFFLINE_DATA));
+            console.log("PreBid Master: Offline data injection complete");
+        })();
+    </script>
+    
+</head>
+<body class="flex h-screen w-full overflow-hidden">
+
+    <!-- Left Pane: RFP Audit -->
+    <div class="w-1/2 border-r border-white/10 p-6 flex flex-col glass">
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <h2 class="text-brand-accent font-bold text-xl tracking-tight">标书原文对照 (RFP Audit)</h2>
+                <p class="text-[10px] text-white/50 uppercase tracking-widest mt-1">Deep Compliance Engine v4.2</p>
+            </div>
+            <div class="flex flex-col items-end">
+                <span class="bg-red-500/20 text-red-500 border border-red-500/30 px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                    检测到 3 处废标风险
+                </span>
+                <span class="text-[10px] text-white/40 mt-1">文件: 海南大学项目_招标文件.pdf</span>
+            </div>
+        </div>
+
+        <div class="flex-1 bg-black/40 rounded-2xl overflow-y-auto p-8 border border-white/5 relative group">
+            <!-- Simulated PDF Content -->
+            <div class="space-y-8 text-white/70 leading-relaxed font-light">
+                <div class="p-4 border-l-2 border-brand-primary bg-brand-primary/5">
+                    <h3 class="text-brand-accent text-sm font-bold mb-2">3.2 技术偏离表要求</h3>
+                    <p class="text-sm italic">“投标人需在演示环节闭环展示人脸识别在极端光照下的识别率，响应时间不得高于 50ms...”</p>
+                </div>
+                
+                <div class="relative p-4 border-l-2 border-red-500 bg-red-500/5">
+                    <div class="absolute -right-2 top-0 bg-red-600 text-[8px] px-1 rounded">RISK</div>
+                    <h3 class="text-red-400 text-sm font-bold mb-2">4.1.5 非功能性指标</h3>
+                    <p class="text-sm">“若无法展示离线环境下的全量数据处理能力，视为实质性不满足，将导致废标。”</p>
+                    <div class="mt-4 flex gap-2">
+                        <button onclick="highlightSolution('offline')" class="text-[10px] bg-white/10 hover:bg-white/20 px-2 py-1 rounded transition">定位解决方案</button>
+                    </div>
+                </div>
+
+                <div class="p-4 border-l-2 border-white/10">
+                    <h3 class="text-white/40 text-sm font-bold mb-2">5.2 商务偏离说明</h3>
+                    <p class="text-sm">“交付周期为 30 个日历日，且需提供全套私有化部署镜像...”</p>
+                </div>
+
+                <div class="p-4 border-l-2 border-brand-primary bg-brand-primary/5">
+                    <h3 class="text-brand-accent text-sm font-bold mb-2">6.1 评分标准：人脸活体检测</h3>
+                    <p class="text-sm italic">“满分项：支持 600 个关键点以上的拓扑结构分析，并能实时回显置信度。”</p>
+                </div>
+                
+                <!-- Placeholder for more content -->
+                <div class="h-64 flex items-center justify-center border-2 border-dashed border-white/10 rounded-xl text-white/20">
+                    [PDF 原文渲染区域：对应原文第 23-45 页评分点]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Pane: Live Demo -->
+    <div class="w-1/2 flex flex-col relative bg-radial-at-t from-slate-900 to-black overflow-hidden">
+        
+        <!-- Header Controls -->
+        <div class="flex justify-between items-center p-6 bg-black/20 backdrop-blur-sm border-b border-white/5">
+            <div class="flex gap-2">
+                <button onclick="changeTheme('gov')" class="px-4 py-1.5 bg-red-600/20 hover:bg-red-600/40 border border-red-600/30 rounded-lg text-xs text-red-200 transition">政务风</button>
+                <button onclick="changeTheme('sci-fi')" class="px-4 py-1.5 bg-purple-600/20 hover:bg-purple-600/40 border border-purple-600/30 rounded-lg text-xs text-purple-200 transition">科幻风</button>
+                <button onclick="changeTheme('saas')" class="px-4 py-1.5 bg-emerald-600/20 hover:bg-emerald-600/40 border border-emerald-600/30 rounded-lg text-xs text-emerald-200 transition">现代SaaS</button>
+            </div>
+            <button onclick="simPackage()" class="group flex items-center gap-2 px-4 py-2 bg-brand-primary hover:bg-brand-accent rounded-xl text-xs font-bold text-white transition-all shadow-lg shadow-brand-primary/20">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                生成交付离线包
+            </button>
+        </div>
+
+        <!-- Central Sandbox -->
+        <div class="flex-1 flex flex-col items-center justify-center p-10">
+            <div id="demo-canvas" class="phone-shell">
+                <div class="scan-line animate-scan"></div>
+                <div id="app-viewport" class="h-full w-full bg-[#0a1020] p-4 flex flex-col text-white">
+                    <!-- Scaled Dynamic Content -->
+                    <div id="demo-header" class="mb-4">
+                        <div class="text-[10px] text-brand-accent tracking-tighter opacity-80 uppercase">PreBid Master Demo</div>
+                        <div class="text-sm font-bold" id="demo-title">海南大学平安校园演示系统</div>
+                    </div>
+
+                    <div class="scanner-box flex-1 border border-brand-primary/30 rounded-2xl bg-black flex flex-col items-center justify-center relative overflow-hidden">
+                        <div id="avatar-container" class="w-32 h-32 rounded-full border-2 border-brand-accent/50 p-1 mb-4">
+                            <div class="w-full h-full rounded-full bg-slate-800 animate-pulse overflow-hidden">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Target" class="opacity-50 grayscale contrast-125">
+                            </div>
+                        </div>
+                        <div class="text-[32px] font-mono font-bold" id="live-score">98.42</div>
+                        <div class="text-[10px] opacity-40 uppercase">人脸置信度 (Confidence Level)</div>
+                        
+                        <!-- Mini Radar Overlay -->
+                        <div class="absolute bottom-4 left-4 flex flex-col gap-1">
+                            <div class="w-12 h-1 bg-brand-primary/20 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-primary animate-[shimmer_2s_infinite]" style="width: 70%"></div>
+                            </div>
+                            <div class="text-[8px] text-brand-primary">Liveness: 100%</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="p-2 glass rounded-lg">
+                            <div class="text-[8px] text-white/40">LATENCY</div>
+                            <div class="text-xs font-bold text-brand-accent">24ms</div>
+                        </div>
+                        <div class="p-2 glass rounded-lg">
+                            <div class="text-[8px] text-white/40">NODES</div>
+                            <div class="text-xs font-bold text-brand-accent">>612 pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Coach Overlay -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[80%] max-w-lg glass p-5 rounded-2xl shadow-2xl border border-white/20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-brand-primary/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="text-[10px] text-brand-accent font-bold tracking-widest uppercase">● 演示教练已就绪 (01:45/05:00)</div>
+                        <div class="flex gap-1">
+                            <div class="w-1 h-3 bg-brand-primary"></div>
+                            <div class="w-1 h-3 bg-brand-primary/40"></div>
+                            <div class="w-1 h-3 bg-brand-primary/20"></div>
+                        </div>
+                    </div>
+                    <div id="coach-text" class="text-xs text-white/90 leading-relaxed italic">
+                        “现在请向评委演示人脸识别模块。请注意，评分位在标书第 15 页强调了 50ms 极低延迟，刚才演示中我们的实时反馈已回显为 24ms，完美覆盖评分点。”
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Toast -->
+        <div id="toast" class="fixed top-6 right-6 translate-x-[150%] transition-transform duration-500 bg-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span id="toast-msg">离线包生成成功！</span>
+        </div>
+    </div>
+
+    <script>
+        function changeTheme(style) {
+            document.body.className = `flex h-screen w-full overflow-hidden theme-${style}`;
+            const titles = {
+                'gov': '政务平安校园 - 核心能力汇报',
+                'sci-fi': '星纪元·数字孪生安防演示',
+                'saas': 'SmartCampus 企业级管控平台'
+            };
+            document.getElementById('demo-title').textContent = titles[style] || '平安校园演示系统';
+            
+            showToast(`已切换至: ${style === 'gov' ? '政务风' : style === 'sci-fi' ? '科幻风' : '现代SaaS'}`);
+        }
+
+        function highlightSolution(type) {
+            const coach = document.getElementById('coach-text');
+            if(type === 'offline') {
+                coach.textContent = "“针对废标风险：请点击右上角的‘生成交付离线包’按钮。这将展示我们在极端环境下无需依赖外部网络、全要素本地化的核心优势。”";
+                document.querySelector('[onclick="simPackage()"]').classList.add('ring-4', 'ring-white/30');
+                setTimeout(() => {
+                    document.querySelector('[onclick="simPackage()"]').classList.remove('ring-4', 'ring-white/30');
+                }, 3000);
+            }
+        }
+
+        function simPackage() {
+            const btn = document.querySelector('[onclick="simPackage()"]');
+            btn.textContent = "打包中...";
+            btn.classList.add('opacity-50', 'pointer-events-none');
+            
+            setTimeout(() => {
+                btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> 生成交付离线包`;
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+                showToast("全量离线离线交付包已生成！(Assets/offline_v1.zip)");
+            }, 2000);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-msg');
+            msgEl.textContent = msg;
+            toast.style.transform = 'translateX(0)';
+            setTimeout(() => {
+                toast.style.transform = 'translateX(150%)';
+            }, 3000);
+        }
+
+        // Live Score Simulation
+        setInterval(() => {
+            const el = document.getElementById('live-score');
+            const current = parseFloat(el.textContent);
+            const next = 98 + (Math.random() * 1.5);
+            el.textContent = next.toFixed(2);
+        }, 1500);
+    </script>
+</body>
+</html>

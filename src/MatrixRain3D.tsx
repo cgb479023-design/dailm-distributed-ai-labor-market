@@ -10,149 +10,139 @@ interface MatrixRain3DProps {
 
 const MatrixRain3D: React.FC<MatrixRain3DProps> = ({ zIndex = -1, color = '#22d3ee' }) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const materialRef = useRef<THREE.MeshBasicMaterial | null>(null);
+    const [reinitKey, setReinitKey] = React.useState(0);
+    const requestRef = useRef<number | null>(null);
+    const [isWebGLOk, setIsWebGLOk] = React.useState(true);
 
-    // 监听颜色变化并实时更新 WebGL 材质
+    // 监听颜色变化
     useEffect(() => {
         if (materialRef.current) {
             materialRef.current.color.set(color);
-            // 增加发光强度模拟“热量”
-            materialRef.current.opacity = color === '#f43f5e' ? 1.0 : 0.8;
+            materialRef.current.opacity = color === '#f43f5e' ? 0.9 : 0.6; // Slightly more balanced
         }
     }, [color]);
 
     useEffect(() => {
         if (!containerRef.current) return;
 
-        // --- THREE.js 核心初始化 ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        containerRef.current.appendChild(renderer.domElement);
+        // Try Three.js initialization
+        let renderer: THREE.WebGLRenderer | null = null;
+        let scene: THREE.Scene | null = null;
+        
+        try {
+            console.log("Initializing Three.js Matrix Rain...");
+            scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
+            camera.position.z = 1000;
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            console.log("WebGL Renderer created.");
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x000000, 0); // Explicit transparency
+            containerRef.current.appendChild(renderer.domElement);
 
-        // --- 代码流粒子系统 ---
-        const characterSets = [
-            'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン', // Katakana
-            'abcdefghijklmnopqrstuvwxyz', // Latin
-            '0123456789' // Digits
-        ];
-        const charArray = characterSets.join('').split('');
-        const fontHeight = 16;
-        const charCount = 30; // 每个流的代码长度
-        const numStreams = Math.ceil(window.innerWidth / fontHeight) * 2; // 代码流的数量
+            const loader = new FontLoader();
+            console.log("Loading font: /fonts/helvetiker_regular.typeface.json");
+            loader.load('/fonts/helvetiker_regular.typeface.json', (font: Font) => {
+                console.log("Font loaded successfully.");
+                const textMaterial = new THREE.MeshBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.8,
+                    blending: THREE.AdditiveBlending
+                });
+                materialRef.current = textMaterial;
 
-        // 创建字体加载器
-        const loader = new FontLoader();
-        // 使用下载的本地字体
-        loader.load('/fonts/helvetiker_regular.typeface.json', (font: Font) => {
-            const textMaterial = new THREE.MeshBasicMaterial({
-                color: color,
-                transparent: true,
-                opacity: color === '#f43f5e' ? 1.0 : 0.8,
-                blending: THREE.AdditiveBlending // 霓虹发光效果
-            });
-            materialRef.current = textMaterial;
+                const streams: THREE.Group[] = [];
+                const characterSets = ['アァカサタナハマヤャラワガザ达巴', 'abcdefg', '012345'];
+                const charArray = characterSets.join('').split('');
+                const fontHeight = 16;
+                const charCount = 25;
+                const numStreams = Math.ceil(window.innerWidth / fontHeight) * 2;
 
-            const streams: THREE.Group[] = [];
-            for (let i = 0; i < numStreams; i++) {
-                const streamGroup = new THREE.Group();
-                streamGroup.position.set(
-                    (Math.random() - 0.5) * window.innerWidth * 2.5, // 宽阔的 Z 轴覆盖
-                    window.innerHeight + Math.random() * window.innerHeight * 2,
-                    (Math.random() - 0.5) * 2000 // 深度 Z 轴延伸
-                );
-
-                // 为每个流创建文本 Mesh
-                for (let j = 0; j < charCount; j++) {
-                    const char = charArray[Math.floor(Math.random() * charArray.length)];
-                    const geometry = new TextGeometry(char, {
-                        font: font,
-                        size: fontHeight,
-                        depth: 1,
-                        curveSegments: 2,
-                        bevelEnabled: false
-                    });
-
-                    const charMesh = new THREE.Mesh(geometry, textMaterial.clone());
-                    charMesh.position.y = -j * fontHeight;
-                    charMesh.material.opacity = 1 - (j / charCount); // 头部最亮，尾部消失
-
-                    // 随机旋转，增加混沌感
-                    charMesh.rotation.y = (Math.random() - 0.5) * 0.1;
-
-                    streamGroup.add(charMesh);
+                for (let i = 0; i < numStreams; i++) {
+                    const streamGroup = new THREE.Group();
+                    // 确保流在相机视野内
+                    const x = (Math.random() - 0.5) * window.innerWidth * 2;
+                    const y = (Math.random() - 0.5) * window.innerHeight * 2;
+                    const z = (Math.random() - 0.5) * 800;
+                    streamGroup.position.set(x, y, z);
+                    for (let j = 0; j < charCount; j++) {
+                        const geometry = new TextGeometry(charArray[Math.floor(Math.random() * charArray.length)], { font, size: fontHeight, depth: 1 });
+                        const charMesh = new THREE.Mesh(geometry, textMaterial.clone());
+                        charMesh.position.y = -j * fontHeight;
+                        charMesh.material.opacity = 1 - (j / charCount);
+                        streamGroup.add(charMesh);
+                    }
+                    (streamGroup as any).speed = (Math.random() * 3 + 2);
+                    scene!.add(streamGroup);
+                    streams.push(streamGroup);
                 }
 
-                // 赋予每个流不同的掉落速度
-                (streamGroup as any).speed = (Math.random() * 5 + 2) * (window.innerHeight / 1000);
-                scene.add(streamGroup);
-                streams.push(streamGroup);
-            }
-
-            // --- 动画循环 ---
-            const animate = () => {
-                requestAnimationFrame(animate);
-
-                streams.forEach(stream => {
-                    stream.position.y -= (stream as any).speed;
-
-                    // 随机更换字符，模拟代码抖动
-                    stream.children.forEach(char => {
-                        if (Math.random() > 0.99) {
-                            const randomChar = charArray[Math.floor(Math.random() * charArray.length)];
-                            ((char as THREE.Mesh).geometry as TextGeometry).dispose();
-                            (char as THREE.Mesh).geometry = new TextGeometry(randomChar, {
-                                font: font,
-                                size: fontHeight,
-                                depth: 1,
-                                curveSegments: 2,
-                                bevelEnabled: false
-                            });
-                        }
+                const animate = () => {
+                    requestRef.current = requestAnimationFrame(animate);
+                    streams.forEach(s => {
+                        s.position.y -= (s as any).speed;
+                        if (s.position.y < -window.innerHeight) s.position.y = window.innerHeight;
                     });
+                    renderer?.render(scene!, camera);
+                };
+                animate();
+            }, undefined, (err) => {
+                console.error("Font Load Failed:", err);
+                setIsWebGLOk(false);
+            });
+        } catch (e) {
+            console.error("Three.js Init Failed:", e);
+            setIsWebGLOk(false);
+        }
 
-                    // 当流到达底部时，重置到顶部
-                    if (stream.position.y < -window.innerHeight) {
-                        stream.position.y = window.innerHeight + Math.random() * window.innerHeight;
-                        stream.position.x = (Math.random() - 0.5) * window.innerWidth * 2.5;
-                        // 随机改变 Z 轴深度，模拟无限空间
-                        stream.position.z = (Math.random() - 0.5) * 2000;
-                    }
-                });
-
-                renderer.render(scene, camera);
-            };
-            animate();
-        });
-
-        // --- 窗口重置处理 ---
-        const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        };
-        window.addEventListener('resize', handleResize);
-
-        // --- 清理逻辑 ---
         return () => {
-            window.removeEventListener('resize', handleResize);
-            if (containerRef.current) {
-                containerRef.current.removeChild(renderer.domElement);
+            if (requestRef.current) cancelAnimationFrame(requestRef.current);
+            if (renderer) {
+                if (renderer.domElement.parentNode === containerRef.current) containerRef.current?.removeChild(renderer.domElement);
+                renderer.dispose();
             }
-            // scene.clear() OR recursive dispose is better, but this handles simple unmount
-            scene.clear();
-            renderer.dispose();
         };
-    }, []);
+    }, [reinitKey]);
+
+    // Fallback Canvas (Pure 2D Matrix Rain)
+    useEffect(() => {
+        if (isWebGLOk) return;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const columns = Math.floor(canvas.width / 20);
+        const drops = new Array(columns).fill(1);
+        const chars = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ".split("");
+
+        const draw = () => {
+            ctx.fillStyle = "rgba(2, 6, 23, 0.1)"; // Trails
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = color;
+            ctx.font = "15px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * 20, drops[i] * 20);
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        };
+        const interval = setInterval(draw, 50);
+        return () => clearInterval(interval);
+    }, [isWebGLOk, color, reinitKey]);
 
     return (
-        <div
-            ref={containerRef}
-            className="fixed inset-0 pointer-events-none"
-            style={{ zIndex }}
-        />
+        <div ref={containerRef} className="fixed inset-0 pointer-events-none" style={{ zIndex, display: 'block' }}>
+            {!isWebGLOk && <canvas ref={canvasRef} className="fixed inset-0" style={{ display: 'block' }} />}
+        </div>
     );
 };
 

@@ -1,0 +1,9 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+<rect width="100%" height="100%" fill="#0a0a0a"/>
+<text x="20" y="40" fill="#00ffcc" font-family="monospace">HAINAN PROJECT ARCHITECTURE</text>
+<rect x="50" y="70" width="100" height="60" stroke="#00ffcc" fill="none"/>
+<text x="65" y="105" fill="#00ffcc" font-size="12">Embedded CPU</text>
+<path d="M 150 100 L 250 100" stroke="#00ffcc" marker-end="url(#arrow)"/>
+<rect x="250" y="70" width="100" height="60" stroke="#00ffcc" fill="none"/>
+<text x="280" y="105" fill="#00ffcc" font-size="12">NPU (600pts)</text>
+</svg>

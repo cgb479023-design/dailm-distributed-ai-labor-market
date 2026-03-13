@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: DAILM PreBid API
+  version: 0.1.0
+  description: API for RFP parsing, model auction orchestration, and UI synthesis.
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/rfp/parse:
+    post:
+      summary: Upload and parse an RFP document
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                project_tag:
+                  type: string
+      responses:
+        "200":
+          description: Parse job created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParseResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /v1/rfp/status/{job_id}:
+    get:
+      summary: Get parse job status
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Job status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobStatus"
+        "404":
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /v1/rfp/synthesize:
+    post:
+      summary: Synthesize UI strike package
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SynthesizeRequest"
+      responses:
+        "200":
+          description: Synthesis started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SynthesizeResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /v1/ui/package/{ui_package_id}:
+    get:
+      summary: Get generated UI package
+      parameters:
+        - name: ui_package_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: UI package metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UiPackage"
+        "404":
+          description: Package not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    ParseResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+          enum: [queued, running]
+        detected_type:
+          type: string
+        checksum:
+          type: string
+      required: [job_id, status, detected_type, checksum]
+    JobStatus:
+      type: object
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, completed, failed, partial]
+        ui_status:
+          type: string
+          enum: [ok, degraded]
+        backend_status:
+          type: string
+          enum: [success, failed, partial]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/Error"
+      required: [job_id, status, ui_status, backend_status, progress, errors]
+    SynthesizeRequest:
+      type: object
+      properties:
+        job_id:
+          type: string
+        style:
+          type: string
+          enum: [Gov-Biz, Industrial, Sci-Fi, Other]
+      required: [job_id, style]
+    SynthesizeResponse:
+      type: object
+      properties:
+        ui_package_id:
+          type: string
+        status:
+          type: string
+          enum: [queued, running]
+      required: [ui_package_id, status]
+    UiPackage:
+      type: object
+      properties:
+        ui_package_id:
+          type: string
+        download_url:
+          type: string
+        checksum:
+          type: string
+        build_meta:
+          type: object
+          additionalProperties: true
+      required: [ui_package_id, download_url, checksum]
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        stage:
+          type: string
+        retriable:
+          type: boolean
+      required: [code, message, stage, retriable]
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: "#/components/schemas/Error"
+      required: [error]

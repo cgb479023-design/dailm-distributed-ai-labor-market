@@ -1,0 +1,73 @@
+{
+    "project_name": "海南大学平安校园升级改造项目",
+    "project_id": "HD2025-1-007",
+    "industry": "Education_Security",
+    "star_clauses": 91,
+    "features": [
+        {
+            "id": "star_1",
+            "name": "【核心大项】视频监控系统 - 全网格覆盖响应",
+            "status": "pending",
+            "category": "Video"
+        },
+        {
+            "id": "star_2",
+            "name": "【核心大项】出入口控制集成 - 毫秒级联动协议",
+            "status": "pending",
+            "category": "Access"
+        },
+        {
+            "id": "star_4",
+            "name": "★ 人脸识别：关键点提取 ≥ 600 (P24)",
+            "status": "pending",
+            "category": "AI",
+            "target_value": 600
+        },
+        {
+            "id": "star_8",
+            "name": "★ 识别响应延迟 ≤ 50ms (P28)",
+            "status": "pending",
+            "category": "Perf",
+            "target_value": 50
+        },
+        {
+            "id": "star_24",
+            "name": "★ 动态人脸抓拍评分 ≥ 600 (P28)",
+            "status": "pending",
+            "category": "AI",
+            "target_value": 600
+        },
+        {
+            "id": "star_32",
+            "name": "★ 系统并发吞吐量 ≥ 3200 (P30)",
+            "status": "pending",
+            "category": "Perf"
+        },
+        {
+            "id": "star_40",
+            "name": "★ 活体检测：600点拓扑分析 (P32)",
+            "status": "pending",
+            "category": "AI",
+            "target_value": 600
+        },
+        {
+            "id": "star_56",
+            "name": "★ 核心控制器 CPU 强制性能指标 (P46)",
+            "status": "pending",
+            "category": "HW"
+        },
+        {
+            "id": "star_18",
+            "name": "★ 离线环境全量数据处理能力 (P10/58)",
+            "status": "pending",
+            "category": "Compliance"
+        },
+        {
+            "id": "star_91",
+            "name": "▲/★ 技术参数响应表全量对齐 (P90)",
+            "status": "pending",
+            "category": "Compliance"
+        }
+    ],
+    "raw_stars": 91
+}

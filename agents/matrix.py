@@ -9,6 +9,8 @@ from core.sensing import SituationalAwarenessEngine
 from core.sandbox import NeuralSandbox
 from core.verifier import AdversarialVerifier
 from core.planner import TaskDecomposer, TaskStep
+from core.audit_log import AuditLogger
+from utils.privacy import scrub_pii
 from agents.asset_manager import AssetManager
 from agents.archive_v2 import MissionArchiveV2
 import sqlite3
@@ -57,30 +59,48 @@ class BiddingEngine:
         alpha_ewma = 0.2
         if node_id in self.labor_profiles:
             old_mu = self.labor_profiles[node_id]["mu"]
-            self.labor_profiles[node_id]["mu"] = alpha_ewma * measured_latency + (1 - alpha_ewma) * old_mu
+            self.labor_profiles[node_id]["mu"] = float(alpha_ewma) * float(measured_latency) + (1.0 - float(alpha_ewma)) * float(old_mu)
 
-    def calculate_bids(self, task_type: str, ignore_constraints: bool = False) -> List[Dict[str, Any]]:
+    def calculate_bids(self, task_type: str, ignore_constraints: bool = False, registered_nodes: List[str] = None) -> List[Dict[str, Any]]:
         bids = []
+        
+        # Determine normalization factors
+        mu_max = max([p["mu"] for p in self.labor_profiles.values()]) if self.labor_profiles else 1000
+        c_max = max([p["c_base"] for p in self.labor_profiles.values()]) if self.labor_profiles else 10
+        
+        w1, w2, w3 = 0.4, 0.3, 0.3 # Codex-S Weights
+
         for node_id, profile in self.labor_profiles.items():
-            # Stabilize mock values to prevent random test failures
-            cpu_mock = 20.0  # Stable low usage
-            temp_mock = 50.0 # Stable safe temperature
-            rtt_mock = 0.05  # Stable low latency
+            if registered_nodes is not None and node_id not in registered_nodes:
+                continue
+            
+            # Stabilize mock values
+            cpu_mock = 20.0
+            temp_mock = 50.0
+            rtt_mock = 0.05
             
             situation = self.sensing_engine.update_metrics(node_id, cpu_mock, temp_mock, rtt_mock)
             s_i = situation["s_i"]
             
             if not ignore_constraints and situation["is_constrained"]:
-                logger.warning(f"Node {node_id} is CONSTRAINED due to health.")
                 continue
 
             theta_dict = profile.get("theta", {})
             theta_ij = theta_dict.get(task_type, 0.5)
-            bid_value = profile["c_base"] / (max(0.01, s_i) * max(0.01, theta_ij))
+            
+            # [CODEX_FORMULA]: Evolved Bidding Score
+            norm_latency = profile["mu"] / max(1, mu_max)
+            norm_cost = profile["c_base"] / max(0.1, c_max)
+            reliability_penalty = 1.0 - profile.get("rho", 0.95)
+            
+            bid_score = w1 * norm_latency + w2 * norm_cost + w3 * reliability_penalty
+            # Adjust by competence theta and situation s_i
+            final_bid = bid_score / (max(0.1, s_i) * max(0.1, theta_ij))
             
             bids.append({
                 "node_id": node_id,
-                "bid": bid_value,
+                "bid": final_bid,
+                "bid_score": bid_score,
                 "situation": situation
             })
             
@@ -97,7 +117,7 @@ class BiddingEngine:
         for node_id, profile in self.labor_profiles.items():
             if profile.get("mu", 0) > 600 or profile.get("rho", 1.0) < 0.7:
                 stress_count += 1
-        return stress_count / max(1, len(self.labor_profiles))
+        return float(stress_count) / float(max(1, len(self.labor_profiles)))
 
 class TaskStep:
     def __init__(self, step_id: str, parent_goal: str, agent_type: str, goal: str, instructions: str, dependencies: List[str] = None):
@@ -122,6 +142,9 @@ class ModelMatrix:
         self.archive = MissionArchiveV2()
         self.planner = TaskDecomposer(self)
         self.db_path = "mission_logs/state.db"
+        self.audit = AuditLogger()
+        from agents.persona_manager import PersonaManager
+        self.persona_manager = PersonaManager()
         self._init_db()
 
     def _init_db(self):
@@ -165,18 +188,40 @@ class ModelMatrix:
             logger.warning("[MATRIX]: Market Stress Detected. Spawning Arena Shadow Node...")
             self.register_adapter("claude", LmsysAdapter(self.engine, self.status_manager))
 
-    async def route_task(self, task_type: str, prompt: str, bypass_verification: bool = False, bypass_constraints: bool = False):
-        logger.info(f"Initiating Neural Auction for task: {task_type}")
+    async def route_task(self, task_type: str, prompt: str, bypass_verification: bool = False, bypass_constraints: bool = False, persona: str = None):
+        logger.info(f"Initiating Neural Auction for task: {task_type} (Persona: {persona or 'Default'})")
+        safe_prompt = scrub_pii(prompt)
         
+        # Inject expert persona DNA if requested
+        if persona:
+            expert_dna = self.persona_manager.get_persona(persona)
+            if expert_dna:
+                logger.info(f"[MATRIX]: Injecting Expert DNA: {persona}")
+                safe_prompt = f"[EXPERT_ROLE: {persona}]\n\n{expert_dna}\n\n[MISSION_TASK]:\n{safe_prompt}"
+            else:
+                logger.warning(f"[MATRIX]: Requested persona '{persona}' not found. Falling back to default.")
+
         stress = self.bidding_engine.analyze_market_stress()
         if stress > 0.5:
             self.spawn_weg_labor("friendli")
 
-        bids = self.bidding_engine.calculate_bids(task_type, ignore_constraints=bypass_constraints)
+        registered_nodes = list(self.adapters.keys())
+        bids = self.bidding_engine.calculate_bids(task_type, ignore_constraints=bypass_constraints, registered_nodes=registered_nodes)
+        for b in bids:
+            self.audit.write(
+                "bid_score",
+                {
+                    "task_type": task_type,
+                    "node_id": b.get("node_id"),
+                    "bid_score": b.get("bid_score"),
+                    "bid": b.get("bid"),
+                },
+            )
         if not bids:
             logger.error("No eligible nodes for auction. Force spawning emergency labor...")
             self.spawn_weg_labor("friendli")
-            bids = self.bidding_engine.calculate_bids(task_type, ignore_constraints=True)
+            registered_nodes = list(self.adapters.keys())
+            bids = self.bidding_engine.calculate_bids(task_type, ignore_constraints=True, registered_nodes=registered_nodes)
             if not bids: return None
 
         winner = bids[0]
@@ -197,7 +242,15 @@ class ModelMatrix:
                 raise ValueError(f"No adapter for winner {target_model}")
                 
             start_time = time.time()
-            result = await adapter.query(prompt)
+            self.audit.write(
+                "data_egress",
+                {
+                    "task_type": task_type,
+                    "node_id": target_model,
+                    "prompt_len": len(safe_prompt),
+                },
+            )
+            result = await adapter.query(safe_prompt)
             duration = (time.time() - start_time) * 1000 # ms
             
             self.bidding_engine.update_performance(target_model, duration)

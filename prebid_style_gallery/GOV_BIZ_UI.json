@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_GOV_BIZ",
+    "ratio": "9:16",
+    "theme": "Gov-Official",
+    "background": "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#003366"
+      }
+    }
+  ]
+}

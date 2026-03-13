@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_HEALTHCARE",
+    "ratio": "9:16",
+    "theme": "Medical-Pure",
+    "background": "#ffffff"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#10b981"
+      }
+    }
+  ]
+}

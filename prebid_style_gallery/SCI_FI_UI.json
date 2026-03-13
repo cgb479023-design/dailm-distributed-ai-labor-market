@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_SCI_FI",
+    "ratio": "9:16",
+    "theme": "Hyper-Tech Neon",
+    "background": "linear-gradient(135deg, #0a0b1e 0%, #1a1b3a 100%)"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#bc13fe"
+      }
+    }
+  ]
+}

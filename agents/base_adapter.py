@@ -4,6 +4,7 @@ import traceback
 from pathlib import Path
 from loguru import logger
 from typing import Callable, Any, Dict
+from core.audit_log import AuditLogger
 
 
 class SovereignSSHLLException(Exception):
@@ -41,6 +42,7 @@ class BaseAdapter:
         self.status_manager = status_manager
         self.max_retries = 3
         self.current_task_context = {}
+        self.audit = AuditLogger()
 
     async def log(self, message: str, level: str = "info"):
         """Broadcasts a neural log back to CommanderCenter."""
@@ -58,17 +60,31 @@ class BaseAdapter:
 
     async def execute_with_ssh_loop(self, action_name: str, action_func: Callable, *args, **kwargs) -> Any:
         """Global Sovereign Self Heal Loop (Sense -> Diagnose -> Heal -> Act)."""
+        self.audit.write("ssh_loop_start", {"action": action_name, "node": getattr(self, "node_id", "unknown")})
         for attempt in range(1, self.max_retries + 1):
             try:
                 await self.log(f"Executing [{action_name}] (Attempt {attempt}/{self.max_retries})")
                 result = await action_func(*args, **kwargs)
+                if attempt > 1:
+                    self.audit.write(
+                        "ssh_loop_recovered",
+                        {"action": action_name, "node": getattr(self, "node_id", "unknown"), "attempt": attempt},
+                    )
                 return result
             except Exception as e:
                 error_msg = str(e)
                 await self.log(f"[{action_name}] Failed on attempt {attempt}: {error_msg}", level="warn")
+                self.audit.write(
+                    "ssh_loop_retry",
+                    {"action": action_name, "node": getattr(self, "node_id", "unknown"), "attempt": attempt, "error": error_msg},
+                )
 
                 if attempt == self.max_retries:
                     await self.log(f"[{action_name}] Max retries reached. Sovereign SSHL failed.", level="error")
+                    self.audit.write(
+                        "ssh_loop_failed",
+                        {"action": action_name, "node": getattr(self, "node_id", "unknown"), "error": error_msg},
+                    )
                     raise SovereignSSHLLException(
                         f"Failed to execute {action_name} after {self.max_retries} attempts."
                     ) from e

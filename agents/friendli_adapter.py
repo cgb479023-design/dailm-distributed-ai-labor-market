@@ -10,9 +10,9 @@ class FriendliAdapter(BaseAdapter):
     def __init__(self, engine, status_manager=None):
         super().__init__(engine, status_manager)
         self.node_id = "friendli"
-        self.playground_url = "https://friendli.ai/suite/C7BLx88kTHS2/d8GO9nV3Vnxw/serverless-endpoints/zai-org/GLM-5/overview"
-        self.input_selector = '[placeholder*="prompt"]'
-        self.send_button_selector = 'button:has(svg)'
+        self.playground_url = "https://friendli.ai/suite/C7BLx88kTHS2/d8GO9nV3Vnxw/serverless-endpoints/zai-org/GLM-5/overview?playground=open"
+        self.input_selector = "textarea[placeholder='Type your prompt...']"
+        self.send_button_selector = "button.mantine-Button-root.button-root-md-icon"
 
     async def query(self, prompt: str) -> dict:
         await self.log(f"Routing to Friendli GLM-5: {prompt[:20]}...")

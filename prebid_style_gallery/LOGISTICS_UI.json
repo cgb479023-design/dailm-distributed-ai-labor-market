@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_LOGISTICS",
+    "ratio": "9:16",
+    "theme": "Logi-Track",
+    "background": "#f9fafb"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#ef4444"
+      }
+    }
+  ]
+}

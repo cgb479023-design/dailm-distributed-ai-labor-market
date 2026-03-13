@@ -8,6 +8,7 @@ from pypdf import PdfReader
 from docx import Document
 from agents.matrix import ModelMatrix
 from core.sandbox import NeuralSandbox
+from utils.privacy import scrub_pii
 
 logger = logging.getLogger("PREBID_MASTER")
 
@@ -138,17 +139,9 @@ class PreBidAgent:
         return clauses
 
     def _extract_json(self, text: str) -> Dict[str, Any]:
-        """Robust extraction of JSON from AI response."""
-        try:
-            if "```json" in text:
-                text = text.split("```json")[1].split("```")[0].strip()
-            elif "```" in text:
-                text = text.split("```")[1].split("```")[0].strip()
-            return json.loads(text)
-        except Exception as e:
-            msg = f"{text}"[:100]
-            logger.error(f"JSON extraction failed: {e} | Raw text preview: {msg}")
-            return {}
+        """Robust extraction of JSON from AI response using handshake protocol."""
+        from utils.handshake import strict_json_handshake
+        return strict_json_handshake(text)
 
     async def parse_rfp(self, rfp_input: str) -> Dict[str, Any]:
         """
@@ -158,6 +151,7 @@ class PreBidAgent:
         rfp_content = self.extract_text(rfp_input)
         local_star = self._extract_star_clauses_from_text(rfp_content)
         sliced_content = rfp_content[:25000]
+        sliced_content = scrub_pii(sliced_content)
         
         prompt = f"""
         [RECON]: ANALYZE RFP CONTENT.

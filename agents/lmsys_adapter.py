@@ -109,7 +109,12 @@ class LmsysAdapter(BaseAdapter):
                 await page.wait_for_selector(self.input_selector, state="visible", timeout=15000)
                 await self.log("Pulsing prompt into Arena simulator (Human-Mode)...")
                 await page.click(self.input_selector)
-                await page.keyboard.type(prompt, delay=30)
+                # Use anti-bot human typing evolution
+                try:
+                    await self.engine.human_type(page, self.input_selector, prompt)
+                except Exception as e:
+                    logger.warning(f"[LMSys Adapter] human_type failed, falling back: {e}")
+                    await page.keyboard.type(prompt, delay=30)
             except Exception as e:
                 await self.log("CSS Selector failed. Initializing Vision Recon Protocol...", level="warn")
                 success = await VisionHelper.vision_driven_click(page, brain_page, "Ask anything... input box")

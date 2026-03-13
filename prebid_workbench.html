@@ -3,194 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PreBid Master AI | Workbench 9:16</title>
-    <style>
-        :root {
-            --accent: #00d4ff;
-            --bg: #0a1020;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at top, #122347 0%, #05070f 100%);
-            font-family: "Segoe UI", Arial, sans-serif;
-            color: #e7f6ff;
-        }
-        .phone {
-            width: 360px;
-            height: 640px;
-            border: 8px solid #2a2f3f;
-            border-radius: 28px;
-            overflow: hidden;
-            background: var(--bg);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        .canvas {
-            height: 100%;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .header {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .title { font-size: 13px; font-weight: 700; color: var(--accent); }
-        .sub { font-size: 11px; opacity: 0.85; margin-top: 4px; }
-        .scanner {
-            height: 180px;
-            border-radius: 12px;
-            background: #020409;
-            border: 1px solid rgba(0, 212, 255, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        .line {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent);
-            animation: scan 2.5s linear infinite;
-        }
-        @keyframes scan {
-            0% { top: 0; }
-            50% { top: calc(100% - 2px); }
-            100% { top: 0; }
-        }
-        .score {
-            border-radius: 12px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--accent);
-        }
-        .score-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; }
-        .score-value { font-size: 32px; font-weight: 700; margin-top: 2px; letter-spacing: 1px; }
-        .metrics {
-            margin-top: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .metric {
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            background: rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .metric:last-child { border-bottom: none; }
-        .ok { color: #5de0a6; font-weight: 600; }
-    </style>
-</head>
-<body>
-    <div class="phone">
-        <div class="canvas" id="app"></div>
-    </div>
+    <title>PreBid Master AI | Ultimate Enterprise Workbench</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <script>
-        const SCHEMA_KEY = "prebid_workbench_schema_v1";
-        const SCORE_KEY = "prebid_workbench_live_score_v1";
-
-        const defaultSchema = {
-            canvas: { ratio: "9:16", theme: "Gov-Biz Vertical Demo" },
-            components: [
-                {
-                    type: "StatusHeader",
-                    props: {
-                        title: "PREBID MASTER : HAINAN UNIVERSITY",
-                        subtitle: "Safe Campus demo with scoring-point mapping"
-                    }
-                },
-                { type: "LiveFaceScanner", props: {} },
-                { type: "DynamicScoreColumn", props: { label: "Face Quality Index", value: 98.7 } },
-                {
-                    type: "MetricList",
-                    props: {
-                        items: [
-                            { label: "Mandatory Clause Coverage", value: "100%" },
-                            { label: "Face Filtering Latency", value: "< 50ms" },
-                            { label: "Recognition Precision", value: ">= 600 nodes" },
-                            { label: "Offline Mode", value: "Ready" }
-                        ]
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: 'var(--bg)',
+                            accent: 'var(--accent)',
+                            primary: 'var(--accent)', /* Map primary to accent for user code compatibility */
+                        },
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan': 'scan 2.5s linear infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%, 100%': { top: '0%' },
+                            '50%': { top: '100%' },
+                        }
                     }
                 }
-            ]
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Default variables (Gov style fallback) */
+            --bg: #F4F7F9;
+            --accent: #003399;
+            --card-bg: rgba(0, 51, 153, 0.05);
+            --radius: 12px;
+            --font: 'Inter', sans-serif;
+            --glass: rgba(255, 255, 255, 0.8);
+            --scanner: rgba(0, 51, 153, 0.3);
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: #05070f; /* Fixed outer background */
+            color: #e2e8f0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phone-shell {
+            width: 320px;
+            height: 600px;
+            border: 10px solid #1a1a1a;
+            border-radius: 36px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px var(--accent);
+            transition: all 0.5s ease;
+            color: var(--text-main);
+        }
+
+        .phone-shell * {
+            border-radius: inherit;
+        }
+
+        .scan-line {
+            height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .theme-btn {
+            padding: 6px 12px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
+        }
+        .theme-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .theme-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .audit-panel {
+            background: #0d1117;
+            box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex h-screen w-full m-0 overflow-hidden">
+
+    <!-- Left Pane: Audit Panel (RFP Original Comparison) -->
+    <div class="audit-panel w-1/2 h-full flex flex-col p-6 overflow-hidden border-r border-white/5">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h3 class="text-lg font-bold text-slate-200 tracking-tight">标书原文对照 (RFP Audit)</h3>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Deep Compliance Agent v4.2</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="text-[10px] bg-red-500/10 text-red-500 border border-red-500/20 px-3 py-1 rounded-full font-bold animate-pulse">废标风险: 3</button>
+                <button class="text-[10px] bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-3 py-1 rounded-full font-bold">评分点: 12</button>
+            </div>
+        </div>
+        
+        <div class="flex-1 bg-black/40 rounded-2xl border border-white/5 overflow-y-auto p-8 relative scrollbar-hide">
+            <div class="space-y-10 text-slate-400 font-light leading-relaxed text-sm">
+                <!-- Simulated PDF Content -->
+                <div id="rfp-node-1" class="p-5 border-l-2 border-brand-accent bg-brand-accent/5 rounded-r-xl transition-all duration-500 cursor-pointer hover:bg-brand-accent/10" onclick="dispatchJump(15, 'precision')">
+                    <h3 class="text-white text-sm font-bold mb-2">3.2 技术偏离表要求 (P15)</h3>
+                    <p class="text-xs italic">“投标人需在演示环节展示人脸识别在极端光照下的识别率，响应时间不得高于 50ms...”</p>
+                </div>
+
+                <div id="rfp-node-2" class="p-5 border-l-2 border-red-500 bg-red-500/5 rounded-r-xl relative transition-all duration-500 hover:bg-red-500/10" onclick="dispatchJump(45, 'offline')">
+                    <div class="absolute -right-2 top-0 bg-red-600 text-[8px] px-1 rounded font-bold">CRITICAL</div>
+                    <h3 class="text-red-400 text-sm font-bold mb-2">4.1.5 非功能性指标 (P45)</h3>
+                    <p class="text-xs">“若无法展示离线环境下的全量数据处理能力，视为实质性不满足，将导致废标。”</p>
+                </div>
+
+                <div class="p-5 border-l-2 border-white/10 opacity-30">
+                    <h3 class="text-sm font-bold mb-2">5.0 交付约束</h3>
+                    <p class="text-xs">“系统需支持私有化部署，数据库需兼容国产化环境...”</p>
+                </div>
+
+                <div id="rfp-node-3" class="p-5 border-l-2 border-brand-accent bg-brand-accent/5 rounded-r-xl transition-all duration-500 hover:bg-brand-accent/10" onclick="dispatchJump(23, 'liveness')">
+                    <h3 class="text-white text-sm font-bold mb-2">6.2 选优评分项：识别精度</h3>
+                    <p class="text-xs">“识别准确率 >= 98% 且置信度实时回显计满分。”</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Checklist Section (Final POC Version) -->
+        <div class="mt-8 p-4 glass rounded-2xl border border-brand-primary/20">
+            <div class="flex justify-between items-end mb-4">
+                <h3 class="text-[10px] font-bold text-brand-accent uppercase tracking-widest">应标进度 (Compliance)</h3>
+                <span id="progress-text" class="text-xl font-mono font-bold text-brand-primary">0%</span>
+            </div>
+            <div class="w-full h-1 bg-white/10 rounded-full mb-4 overflow-hidden">
+                <div id="progress-bar" class="h-full bg-brand-primary transition-all duration-1000" style="width: 0%"></div>
+            </div>
+            <div id="checklist-items" class="space-y-2">
+                <!-- Checklist Items Rendered via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Pane: Sandbox Panel -->
+    <div class="sandbox-panel w-1/2 h-full flex flex-col items-center justify-center relative bg-black overflow-hidden">
+        
+        <!-- Top Industry Switcher -->
+        <div class="absolute top-6 flex flex-wrap justify-center gap-2 px-6 z-20">
+            <button onclick="changeTheme('gov')" class="theme-btn" data-theme="gov">政务商务</button>
+            <button onclick="changeTheme('sci-fi')" class="theme-btn" data-theme="sci-fi">前沿科幻</button>
+            <button onclick="changeTheme('saas')" class="theme-btn" data-theme="saas">现代SaaS</button>
+            <button onclick="changeTheme('medical')" class="theme-btn" data-theme="medical">医疗健康</button>
+            <button onclick="changeTheme('finance')" class="theme-btn" data-theme="finance">金融专业</button>
+            <button onclick="changeTheme('industrial')" class="theme-btn" data-theme="industrial">工业科技</button>
+            <button onclick="changeTheme('retail')" class="theme-btn" data-theme="retail">电商零售</button>
+            <button onclick="changeTheme('logistics')" class="theme-btn" data-theme="logistics">智慧物流</button>
+        </div>
+
+        <!-- Phone Sandbox -->
+        <div id="demo-canvas" class="phone-shell group">
+            <div class="scan-line animate-scan"></div>
+            <div id="app-viewport" class="h-full w-full p-6 flex flex-col">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col">
+                        <span class="text-[8px] uppercase tracking-tighter opacity-50" id="demo-industry-tag">PreBid Master AI</span>
+                        <span class="text-sm font-bold truncate max-w-[150px]" id="demo-title" style="color:var(--accent)">平安校园演示系统</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center p-1" style="background:var(--card-bg)">
+                        <svg class="w-full h-full opacity-80" style="color:var(--accent)" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col items-center justify-center rounded-3xl border-2 border-dashed relative overflow-hidden" style="border-color:var(--scanner); background:var(--card-bg); border-radius: var(--radius)">
+                    <div class="scanner-circle w-32 h-32 rounded-full border-2 p-1 mb-4 flex items-center justify-center" style="border-color:var(--accent)">
+                        <div class="w-full h-full rounded-full bg-slate-800 animate-pulse overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=PREBID" alt="User" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold tracking-tighter" id="live-score">98.42</div>
+                    <div class="text-[10px] uppercase mt-1 opacity-50">Match Confidence</div>
+                    
+                    <div class="absolute bottom-6 w-full px-6">
+                        <div class="flex justify-between text-[8px] mb-1">
+                            <span>LIVENESS</span>
+                            <span class="font-bold">PASSED</span>
+                        </div>
+                        <div class="h-1.5 w-full bg-black/20 rounded-full overflow-hidden">
+                            <div class="h-full bg-emerald-500 transition-all duration-1000" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-4">
+                    <div class="p-3 rounded-2xl glass flex flex-col items-center" style="border-radius: var(--radius)">
+                        <span class="text-[8px] opacity-50 mb-1 leading-none text-center">LATENCY</span>
+                        <span class="text-lg font-bold" id="live-latency" style="color:var(--accent)">24ms</span>
+                    </div>
+                    <div class="p-3 rounded-2xl glass flex flex-col items-center" style="border-radius: var(--radius)">
+                        <span class="text-[8px] opacity-50 mb-1 leading-none text-center">PRECISION</span>
+                        <span class="text-lg font-bold" style="color:var(--accent)">612+</span>
+                    </div>
+                </div>
+
+                <button onclick="simPackage()" class="mt-6 w-full py-3 rounded-2xl text-xs font-bold text-white shadow-lg transition-all" style="background:var(--accent); border-radius: var(--radius)">
+                    生成交付离线包
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Demo Coach Overlay -->
+        <div class="coach-overlay absolute bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-lg glass p-5 rounded-3xl shadow-2xl border border-white/10 flex gap-4 transform transition-all duration-500 hover:scale-[1.02]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:var(--card-bg)">
+                <svg class="w-6 h-6" style="color:var(--accent)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                        <span class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">AI Presentation Coach</span>
+                    </div>
+                    <span id="coach-progress-label" class="text-[9px] text-slate-500 font-mono">0s / 30s</span>
+                </div>
+                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden mb-3">
+                    <div id="coach-progress" class="h-full bg-brand-accent transition-all duration-1000 ease-linear" style="width: 0%"></div>
+                </div>
+                <p id="coach-script" class="text-xs text-white/90 leading-relaxed italic opacity-0 transition-opacity duration-300">
+                    “欢迎！此 Demo 已根据海南大学标书要求生成，左侧已同步匹配审计风险点。”
+                </p>
+            </div>
+        </div>
+
+        <!-- Action Toast -->
+        <div id="toast" class="fixed top-8 right-8 translate-x-[150%] transition-transform duration-500 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 z-[100]">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <span id="toast-msg" class="text-sm font-medium">离线包生成成功！</span>
+        </div>
+    </div>
+
+    <script>
+        // 1. Refined 8-Industry Theme Matrix (Final Polish)
+        const THEME_CONFIG = {
+            'gov': {
+                '--bg': '#F4F7F9', '--accent': '#003399', '--card-bg': 'rgba(0,51,153,0.05)', '--radius': '4px',
+                '--glass': 'rgba(255,255,255,0.9)', '--scanner': 'rgba(0,51,153,0.3)', '--text-main': '#1e293b',
+                tag: 'GOV-BIZ', title: '政务平安校园系统'
+            },
+            'industrial': {
+                '--bg': '#020617', '--accent': '#00ffcc', '--card-bg': 'rgba(0, 255, 204, 0.05)', '--radius': '0px',
+                '--glass': 'rgba(0,255,204,0.1)', '--scanner': 'rgba(0,255,204,0.5)', '--text-main': '#ccfbf1',
+                tag: 'INDUSTRIAL', title: '工业视觉 AI 检测系统'
+            },
+            'saas': {
+                '--bg': '#FFFFFF', '--accent': '#6366F1', '--card-bg': '#f8fafc', '--radius': '16px',
+                '--glass': 'rgba(255,255,255,0.7)', '--scanner': 'rgba(99,102,241,0.2)', '--text-main': '#1e293b',
+                tag: 'MODERN SAAS', title: 'SmartCampus 管理中台'
+            },
+            'medical': {
+                '--bg': '#f0fdf4', '--accent': '#10b981', '--card-bg': 'rgba(16, 185, 129, 0.08)', '--radius': '20px',
+                '--glass': 'rgba(16,185,129,0.05)', '--scanner': 'rgba(16,185,129,0.4)', '--text-main': '#064e3b',
+                tag: 'MEDICAL AI', title: '医疗健康导诊仿真'
+            },
+            'finance': {
+                '--bg': '#f8fafc', '--accent': '#1e293b', '--card-bg': '#ffffff', '--radius': '2px',
+                '--glass': 'rgba(184,134,11,0.1)', '--scanner': 'rgba(184,134,11,0.5)', '--text-main': '#0f172a',
+                tag: 'FINANCIAL', title: '金融风控数字孪生'
+            },
+            'logistics': {
+                '--bg': '#0f172a', '--accent': '#f59e0b', '--card-bg': 'rgba(245, 158, 11, 0.1)', '--radius': '8px',
+                '--glass': 'rgba(245,158,11,0.1)', '--scanner': 'rgba(245,158,11,0.6)', '--text-main': '#f1f5f9',
+                tag: 'LOGISTICS', title: '智慧物流路由监控'
+            },
+            'retail': {
+                '--bg': '#fff1f2', '--accent': '#e11d48', '--card-bg': 'rgba(225, 29, 72, 0.05)', '--radius': '12px',
+                '--glass': 'rgba(239,68,68,0.1)', '--scanner': 'rgba(239,68,68,0.5)', '--text-main': '#881337',
+                tag: 'RETAIL', title: '电商零售客流分析'
+            },
+            'sci-fi': {
+                '--bg': '#050510', '--accent': '#A855F7', '--card-bg': 'rgba(168,85,247,0.05)', '--radius': '0px',
+                '--glass': 'rgba(168,85,247,0.2)', '--scanner': 'rgba(168,85,247,0.7)', '--text-main': '#f8fafc',
+                tag: 'SCI-FI', title: '星纪元安防指挥中心'
+            }
         };
 
-        function loadSchema() {
-            try {
-                const raw = localStorage.getItem(SCHEMA_KEY);
-                if (!raw) return defaultSchema;
-                return JSON.parse(raw);
-            } catch {
-                return defaultSchema;
+        // 2. Checklist Logic
+        const CHECKLIST_DATA = [
+            { id: 'precision', label: '识别精度 > 98%', score: 10, status: 'pending' },
+            { id: 'latency', label: '响应延迟 < 50ms', score: 10, status: 'pending' },
+            { id: 'liveness', label: '600+ 活体特征点', score: 15, status: 'pending' }
+        ];
+
+        function initChecklist() {
+            const container = document.getElementById('checklist-items');
+            if(!container) return;
+            container.innerHTML = CHECKLIST_DATA.map(item => `
+                <div id="chk-${item.id}" class="flex items-center justify-between opacity-30 transition-all duration-500">
+                    <span class="text-[10px] text-white">${item.label}</span>
+                    <div class="w-3 h-3 rounded-sm border border-white/20 flex items-center justify-center">
+                        <div class="check-mark hidden w-2 h-2 bg-brand-primary"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function verifyScoringPoint(id) {
+            const item = CHECKLIST_DATA.find(i => i.id === id);
+            if (item && item.status !== 'done') {
+                item.status = 'done';
+                const el = document.getElementById(`chk-${id}`);
+                if(el) {
+                    el.classList.remove('opacity-30');
+                    const checkMark = el.querySelector('.check-mark');
+                    if(checkMark) checkMark.classList.remove('hidden');
+                }
+                
+                const doneCount = CHECKLIST_DATA.filter(i => i.status === 'done').length;
+                const percent = Math.round((doneCount / CHECKLIST_DATA.length) * 100);
+                const progressBar = document.getElementById('progress-bar');
+                const progressText = document.getElementById('progress-text');
+                if(progressBar) progressBar.style.width = percent + '%';
+                if(progressText) progressText.textContent = percent + '%';
+                
+                showToast(`✅ 评分点达成: ${item.label}`);
             }
         }
 
-        function saveSchema(schema) {
-            localStorage.setItem(SCHEMA_KEY, JSON.stringify(schema));
+        // 3. Theme Engine
+        function changeTheme(themeKey) {
+            const config = THEME_CONFIG[themeKey];
+            if (!config) return;
+            Object.keys(config).forEach(key => {
+                if(key.startsWith('--')) document.documentElement.style.setProperty(key, config[key]);
+            });
+            document.getElementById('demo-industry-tag').textContent = config.tag;
+            document.getElementById('demo-title').textContent = config.title;
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === themeKey));
+            showToast(`Theme Switched: ${themeKey.toUpperCase()}`);
+            startCoach(themeKey);
         }
 
-        function loadScore(fallback) {
-            const raw = localStorage.getItem(SCORE_KEY);
-            const num = Number(raw);
-            return Number.isFinite(num) ? num : fallback;
+        // 4. Demo Coach
+        let coachTimer = null;
+        function startCoach(theme) {
+            let index = 0;
+            const scripts = ["欢迎！此 Demo 已根据海南大学标书要求生成。", "实时识别精度已突破 98%，满足标书核心条款。", "响应延迟控制在 50ms 以内，性能领先 40%。", "点击‘生成离线包’即可完成最终交付方案封装。"];
+            const scriptEl = document.getElementById('coach-script');
+            const progressEl = document.getElementById('coach-progress');
+            const labelEl = document.getElementById('coach-progress-label');
+            if (coachTimer) clearInterval(coachTimer);
+            coachTimer = setInterval(() => {
+                const percent = (index / 30) * 100;
+                if(progressEl) progressEl.style.width = `${percent}%`;
+                if(labelEl) labelEl.textContent = `${index}s / 30s`;
+                if(index % 8 === 0) {
+                    scriptEl.classList.remove('opacity-100');
+                    setTimeout(() => { scriptEl.innerText = scripts[index/8] || scripts[0]; scriptEl.classList.add('opacity-100'); }, 300);
+                }
+                index++;
+                if (index > 30) clearInterval(coachTimer);
+            }, 1000);
         }
 
-        function saveScore(score) {
-            localStorage.setItem(SCORE_KEY, String(score));
+        // 5. Utilities
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            if(toastMsg) toastMsg.textContent = msg;
+            if(toast) {
+                toast.style.transform = 'translateX(0)';
+                setTimeout(() => { toast.style.transform = 'translateX(150%)'; }, 3000);
+            }
         }
 
-        function render(schema) {
-            const app = document.getElementById("app");
-            const header = schema.components.find(c => c.type === "StatusHeader");
-            const scoreComp = schema.components.find(c => c.type === "DynamicScoreColumn");
-            const metricComp = schema.components.find(c => c.type === "MetricList");
-
-            const scoreLabel = scoreComp?.props?.label || "Live Score";
-            const scoreValue = loadScore(scoreComp?.props?.value || 97.2).toFixed(2);
-            const items = metricComp?.props?.items || [];
-
-            app.innerHTML = `
-                <div class="header">
-                    <div class="title">${header?.props?.title || "PreBid Master"}</div>
-                    <div class="sub">${header?.props?.subtitle || ""}</div>
-                </div>
-                <div class="scanner"><div class="line"></div></div>
-                <div class="score">
-                    <div class="score-label">${scoreLabel}</div>
-                    <div class="score-value" id="live-score">${scoreValue}</div>
-                </div>
-                <div class="metrics">
-                    ${items.map(i => `<div class="metric"><span>${i.label}</span><span class="ok">${i.value}</span></div>`).join("")}
-                </div>
-            `;
+        function simPackage() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = "Packing...";
+            btn.classList.add('opacity-50', 'pointer-events-none');
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+                showToast("Offline Bundle Generated Success!");
+                
+                // Update audit view for offline requirement
+                const node2 = document.getElementById('rfp-node-2');
+                if(node2) {
+                    node2.classList.replace('border-red-500', 'border-emerald-500');
+                    node2.classList.replace('bg-red-500/5', 'bg-emerald-500/5');
+                    const label = node2.querySelector('.absolute');
+                    if(label) { label.textContent = "PASSED"; label.className = "absolute -right-2 top-0 bg-emerald-600 text-[8px] px-1 rounded font-bold transition-all"; }
+                }
+            }, 2000);
         }
 
-        function startPulse() {
-            setInterval(() => {
-                const scoreEl = document.getElementById("live-score");
-                if (!scoreEl) return;
-                const next = 95 + Math.random() * 4.5;
-                scoreEl.textContent = next.toFixed(2);
-                saveScore(next);
-            }, 1200);
+        function dispatchJump(page, id) {
+            showToast(`Syncing RFP Page ${page}...`);
+            const auditPanel = document.querySelector('.audit-panel');
+            auditPanel.style.boxShadow = "inset 0 0 40px rgba(0, 212, 255, 0.2)";
+            setTimeout(() => auditPanel.style.boxShadow = "none", 800);
         }
 
-        const schema = loadSchema();
-        saveSchema(schema);
-        render(schema);
-        startPulse();
+        /**
+         * 海南大学项目专用：数值触发器扩展
+         */
+        function runHainanTriggers(currentNodes, currentLatency) {
+            // 1. 验证 600 个关键点要求
+            if (currentNodes >= 600) {
+                verifyScoringPoint('points_600'); // Note: calling refined function name
+                const coachScript = document.getElementById('coach-script');
+                if(coachScript) {
+                    coachScript.innerText = "“请看左侧：当前活体检测特征点已达 " + currentNodes + " 个，完全覆盖标书第 24 页要求的 600 点强制指标。”";
+                }
+            }
+
+            // 2. 验证 50ms 延迟要求
+            if (currentLatency <= 50) {
+                verifyScoringPoint('latency_50');
+                const scoreEl = document.getElementById('live-score');
+                if(scoreEl) scoreEl.style.color = '#00ffcc'; 
+            }
+        }
+
+        // 6. Live Trigger Engine (Hainan 600pt Edition)
+        setInterval(() => {
+            const scoreEl = document.getElementById('live-score');
+            const latencyEl = document.getElementById('live-latency');
+            const nodeEl = document.getElementById('live-precision'); // Reusing precision slot for points
+            
+            if(!scoreEl || !latencyEl) return;
+            
+            // 模拟真实的识别跳动 (Hainan Range)
+            const nodes = 580 + Math.floor(Math.random() * 50); // 580-630
+            const latency = 20 + Math.floor(Math.random() * 15); // 20-35ms
+            const nextScore = 98 + (Math.random() * 1.5);
+            
+            scoreEl.textContent = nextScore.toFixed(2);
+            latencyEl.textContent = latency + 'ms';
+            if(nodeEl) nodeEl.textContent = nodes + '+';
+            
+            // 执行对标触发
+            runHainanTriggers(nodes, latency);
+            
+            if (nextScore > 99.1) verifyScoringPoint('liveness');
+        }, 1500);
+
+        window.onload = () => {
+            initChecklist();
+            changeTheme('sci-fi');
+        };
     </script>
 </body>
 </html>

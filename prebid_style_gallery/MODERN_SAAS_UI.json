@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_MODERN_SAAS",
+    "ratio": "9:16",
+    "theme": "SaaS-Glass",
+    "background": "linear-gradient(45deg, #f3f4f6 0%, #ffffff 100%)"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#6366f1"
+      }
+    }
+  ]
+}

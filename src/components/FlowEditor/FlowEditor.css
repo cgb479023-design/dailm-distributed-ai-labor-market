@@ -1,0 +1,95 @@
+.flow-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(10, 20, 50, 0.4) 0%, rgba(5, 5, 10, 0.9) 100%);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: inset 0 0 30px rgba(0, 255, 204, 0.1), 0 0 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.flow-editor-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.flow-editor-header {
+  padding: 1.2rem;
+  background: rgba(0, 10, 20, 0.6);
+  border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.flow-editor-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+/* Customizing Flowgram Canvas for Sci-Fi Aesthetic */
+.flowgram-canvas {
+  background-color: transparent !important;
+}
+
+.flowgram-node {
+  background: rgba(10, 30, 60, 0.7) !important;
+  border: 1px solid rgba(0, 255, 204, 0.8) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.4), inset 0 0 10px rgba(0, 255, 204, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.flowgram-node:hover {
+  border-color: #00ffcc !important;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), inset 0 0 15px rgba(0, 255, 204, 0.3) !important;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.flowgram-edge-path {
+  stroke: rgba(0, 255, 204, 0.6) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 204, 0.5));
+}
+
+/* Data Pulse Animation */
+.flowgram-edge-path-animation {
+  stroke: #00ffcc !important;
+  stroke-width: 3px !important;
+  stroke-dasharray: 10, 20;
+  animation: flowgram-pulse 2s linear infinite;
+  filter: drop-shadow(0 0 8px #00ffcc);
+}
+
+@keyframes flowgram-pulse {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flowgram-minimap {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(0, 255, 204, 0.3) !important;
+  border-radius: 8px !important;
+}

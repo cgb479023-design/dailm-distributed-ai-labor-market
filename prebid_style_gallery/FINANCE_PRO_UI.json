@@ -1,0 +1,16 @@
+{
+  "canvas": {
+    "id": "demo_FINANCE_PRO",
+    "ratio": "9:16",
+    "theme": "Finance-Gold",
+    "background": "#ffffff"
+  },
+  "components": [
+    {
+      "type": "Header",
+      "props": {
+        "accent_color": "#8a6d3b"
+      }
+    }
+  ]
+}

@@ -47,11 +47,12 @@ class GeminiWebAdapter(BaseAdapter):
             # Type and send
             await self.log(f"Pulsing neural data into [{found_selector}]...")
             await page.click(found_selector)
-            # Use fill for faster input if it's a contenteditable or textarea
+            # Use anti-bot human typing evolution
             try:
+                await self.engine.human_type(page, found_selector, prompt)
+            except Exception as e:
+                logger.warning(f"[GEMINI Adapter] human_type failed, falling back: {e}")
                 await page.fill(found_selector, prompt)
-            except:
-                await page.keyboard.type(prompt)
             
             await self.engine.human_delay(1, 2)
             await self.log("Executing query (Enter)...")
